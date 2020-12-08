@@ -11,3 +11,32 @@
     border: 1px solid black;
     padding: 1em;
 }
+
+.input-field {
+    display: flex;
+    padding-top: 1em;
+}
+
+.new-project {
+    background-color: black;
+    color: white;
+    margin: 0;
+    width: 40%;
+    transform: translateX(-155%);
+}
+
+.active-btn {
+    transform: translateX(0);
+    transition: 150ms ease-in;
+}
+
+.new-project-input {
+    transform: scaleX(0);
+    width: 60%;
+    margin: 0;
+}
+
+.active-input {
+    transform: scaleX(1);
+    transition: 150ms ease-in;
+}

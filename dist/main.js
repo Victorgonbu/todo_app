@@ -1,1 +1,1 @@
-document.querySelector(".class").textContent="Hello world",console.log("linked");
+(()=>{const e=[],t=document.querySelector(".new-project"),o=document.querySelector(".new-project-input");let c=document.querySelector(".projects");t.addEventListener("click",(()=>{t.classList.toggle("active-btn"),o.classList.toggle("active-input"),"Add project"==t.textContent?t.textContent="New project":t.textContent="Add project",o.value&&(e.push(o.value),c.querySelector("form").reset()),n()}));const n=()=>{console.log(e)}})();
