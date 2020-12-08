@@ -1,0 +1,1 @@
+document.querySelector(".class").textContent="Hello world",console.log("linked");
