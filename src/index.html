@@ -25,7 +25,50 @@
             
         </div>
         <div class="display-board">
-
+            <form action="" class="add-todo-form">
+                <div class="wrapper-field">
+                    <div class="field">
+        
+                        <input type="text" class="input text-input" placeholder="Title">
+                    </div>
+                    
+                    <div class="field">
+                        <input type="checkbox" class="input">
+                        <label for="checkbox">Done</label>
+                       
+                    </div>
+                </div>
+               
+                <div class="field">
+                   
+                    <textarea name="description" id="description" placeholder="Description" class="input area-input"></textarea>
+                </div>
+                <div class="wrapper-field">
+                    <div class="field">
+                        <label for="dueDate">Due date</label>
+                        <input type="date" class="input">
+                    </div>
+                    <div class="field">
+                        <label for="priority">Priority</label>
+                        <select name="priority" id="priority" class="input">
+                            <option value="1">High</option>
+                            <option value="2">Medium</option>
+                            <option value="3">Low</option>
+                        </select>
+                    </div>
+                </div>
+                
+             
+                    <div class="field">
+                        <label for="notes" class="notes-label">Notes</label>
+                        <input type="text" class="input notes-input">
+                    </div>
+    
+               
+               
+                <input type="submit" value="Create">
+            </form>
+            <div class="board"></div>
         </div>
     </main>
     <footer>

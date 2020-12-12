@@ -66,10 +66,55 @@
     background-color: white;
     border: 1px solid white;
     transition: 200ms ease-out;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .active-board {
     border: 1px solid red;
     transform: scaleX(1);
     transition: 200ms ease-out;
+}
+
+.wrapper-field {
+    display: flex;
+    justify-content: space-between;
+}
+
+.add-todo-form {
+    border: 1px solid black;
+    padding: 0.5em;
+    width: 37%;
+}
+
+.input {
+    border-radius: 5px;
+    border: 1px solid gray;
+    padding: 5px;
+    margin-bottom: 5px;
+}
+
+.text-input {
+    width: 100%;
+    
+}
+
+.area-input {
+    resize: none;
+    width: calc(100% - 1em);
+}
+
+.notes-input {
+    width: 85%;
+
+}   
+
+.notes-label {
+    width: calc(15% - 1.1em);
+    display: inline-block;
+}
+
+.add-todo-form {
+
 }

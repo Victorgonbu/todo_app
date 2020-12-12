@@ -11,8 +11,9 @@ const mainContainer = document.querySelector('.main-container');
 
 
 const generateProjectBoard = (project, board) => {
+
     while(board.firstChild) {
-        board.removeChild(board.firstChild);
+        board.removeChild(board.lastChild);
     }
    
     const header = document.createElement('h2');
@@ -39,10 +40,10 @@ const justAdded = (text) => {
     
     project.addEventListener('click', () => {
         const board = document.querySelector('.display-board');
-        
+        const subBoard = document.querySelector('.board');
         board.classList.add('active-board');
         
-        generateProjectBoard(project, board);
+        generateProjectBoard(project, subBoard);
     });
     list.appendChild(project);
 }
