@@ -83,7 +83,7 @@
 }
 
 .add-todo-form {
-    border: 1px solid black;
+    border: 1px solid rosybrown;
     padding: 0.5em;
     width: 37%;
 }
@@ -115,6 +115,33 @@
     display: inline-block;
 }
 
-.add-todo-form {
+.submit-field {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
 
+.submit {
+    border: 1px solid blue;
+    background-color: white;
+    font-weight: 600;
+    padding: 5px 15px;
+}
+
+.board {
+    margin-top: 1em;
+    padding: 1em;
+    width: 100%;
+    background-color: red;
+}
+
+.todo-card {
+    border: 1px solid black;
+}
+
+.todo {
+    width: 50%; 
+    background-color: green;
+    display: flex;
+    justify-content: center;
 }
