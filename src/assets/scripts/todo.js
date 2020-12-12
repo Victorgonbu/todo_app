@@ -1,4 +1,6 @@
 const Todo = (title, description, dueDate, priority, notes, checklist, project) => {
+    const TODOLIST = [];
+
     function createTagContainer(attribute, todo) {
         const elementTag = document.createElement('p');
         elementTag.innerHTML = `<span>${attribute}: </span> ${todo[attribute]}`;
@@ -13,7 +15,7 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project) 
         return generatedtags;
 
     }
-    return {title, description, dueDate, priority, notes, checklist, project, generateTodoTags};
+    return {title, description, dueDate, priority, notes, checklist, project, generateTodoTags, TODOLIST};
 }
 
 export default Todo;
