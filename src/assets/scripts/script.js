@@ -1,3 +1,4 @@
+import storage from './storage.js';
 import Todo from "./todo.js";
 import Project from "./project.js"
 
@@ -16,7 +17,7 @@ ADDNEWPROJECTBTN.addEventListener('click', () => {
         ADDNEWPROJECTBTN.textContent = 'Add project';
     }
     if(ADDNEWPROJECTINPUT.value) {
-        const newProject = Project(ADDNEWPROJECTINPUT.value, Todo.TODOLIST);
+        const newProject = Project(ADDNEWPROJECTINPUT.value, storage.getTodoListArr());
         const project = newProject.displayNewProject();
         PROJECTLIST.appendChild(project);
         const form = PROJECTSCONTAINER.querySelector('form');
@@ -27,6 +28,5 @@ ADDNEWPROJECTBTN.addEventListener('click', () => {
 const newtodo = Todo('exercise', 'joggin session', 'tomorrow', 1, 'none', false, 'today');
 const newtodo2 = Todo('exercise', 'joggin session', 'tomorrow', 1, 'none', false, 'today');
 
-
-console.log(Todo.TODOLIST);
+newtodo.temporal(newtodo, newtodo2);
 

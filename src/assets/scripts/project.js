@@ -1,6 +1,6 @@
+import storage from './storage.js';
+
 const Project = (name, TODOLIST) => {
-    const PROJECTSARR = [];
-    
 
     function generateProjectTitle (project) {
         const header = document.createElement('h2');
@@ -46,7 +46,7 @@ const Project = (name, TODOLIST) => {
     }
     
     function displayNewProject() {
-        PROJECTSARR.push(this);
+        storage.addProject(this);
         const project = document.createElement('li');
         project.classList.add('project-item');
         project.textContent = this.name; 

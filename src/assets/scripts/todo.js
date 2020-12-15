@@ -1,5 +1,11 @@
+import storage from "./storage";
+
 const Todo = (title, description, dueDate, priority, notes, checklist, project) => {
-    const TODOLIST = [];
+
+    function temporal(n, t) {
+        storage.addTodo(n);
+        storage.addTodo(t);
+    }
 
     function createTagContainer(attribute, todo) {
         const elementTag = document.createElement('p');
@@ -15,7 +21,7 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project) 
         return generatedtags;
 
     }
-    return {title, description, dueDate, priority, notes, checklist, project, generateTodoTags, TODOLIST};
+    return {title, description, dueDate, priority, notes, checklist, project, generateTodoTags, temporal};
 }
 
 export default Todo;
