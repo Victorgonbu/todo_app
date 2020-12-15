@@ -4,6 +4,7 @@ const Project = (name, TODOLIST) => {
 
     function generateProjectTitle (project) {
         const header = document.createElement('h2');
+        header.classList.add('project-title');
         header.textContent = project.textContent;
         return header;
     }
