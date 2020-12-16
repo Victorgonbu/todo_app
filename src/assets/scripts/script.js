@@ -34,10 +34,12 @@ ADDTODOBTNS.forEach(btn => {
         const notes = document.getElementById('notes').value;
         const priority = document.getElementById('priority').value;
         const project = document.querySelector('.project-title').textContent;
+        const form = document.querySelector('.add-todo-form');
         let newTodo = Todo(title, description, dueDate, priority, notes, checkbox, project);
         
         newTodo.displayNewTodo();
         storage.addTodo(newTodo);
+        form.reset();
     });
 });
 
