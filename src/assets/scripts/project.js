@@ -9,21 +9,33 @@ const Project = (name, TODOLIST) => {
         return header;
     }
     
-    function generateProjectTodos(project) {
+    function generateProjectTodos(project, doneContainer, undoneContainer) {
         let todos = TODOLIST.filter(todo => todo.project == project.textContent);
-        let asociatedTodos = [];
+
         if(todos) {
             todos.forEach(todo => {
             
                 const container = document.createElement('div');
                 container.classList.add('todo-card');
+                if(todo.priority == 'High') {
+                    container.classList.add('high-priority');
+                }else if(todo.priority == 'Medium') {
+                    container.classList.add('medium-priority');
+                }else {
+                    container.classList.add('low-priority');
+                }
+                if(todo.checklist == false) {
+                    undoneContainer.appendChild(container);
+                }else {
+                    doneContainer.appendChild(container);
+                }
                 let todoAttributes = todo.generateTodoTags();
                 todoAttributes.forEach(attribute => {
                     container.appendChild(attribute);
                 });
-                asociatedTodos.push(container);
+                
             });
-            return asociatedTodos;
+            
         }
     }
 
@@ -35,14 +47,24 @@ const Project = (name, TODOLIST) => {
 
     function projectClickListener(project) {
         project.addEventListener('click', () => {
+            
             const board = document.querySelector('.display-board');
             const subBoard = document.querySelector('.board');
-            board.classList.add('active-board');
             clearProjectBoard(subBoard);
+            const doneTodo = document.createElement('div');
+            doneTodo.classList.add('done');
+            const undoneTodo = document.createElement('div');
+            undoneTodo.classList.add('undone');
+            
+            subBoard.appendChild(undoneTodo);
+            subBoard.insertBefore(doneTodo, subBoard.firstChild);
+            board.classList.add('active-board');
+           
+
             let projectTitle = generateProjectTitle(project, subBoard);
-            subBoard.appendChild(projectTitle);
-            let asociatedTodos = generateProjectTodos(project, this);
-            asociatedTodos.forEach(todo => subBoard.appendChild(todo));
+            subBoard.insertBefore(projectTitle, subBoard.firstChild);
+            generateProjectTodos(project, doneTodo, undoneTodo);
+        
         });
     }
     

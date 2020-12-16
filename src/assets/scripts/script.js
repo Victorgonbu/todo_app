@@ -35,8 +35,8 @@ ADDTODOBTNS.forEach(btn => {
         const priority = document.getElementById('priority').value;
         const project = document.querySelector('.project-title').textContent;
         let newTodo = Todo(title, description, dueDate, priority, notes, checkbox, project);
+        newTodo.displayNewTodo();
         storage.addTodo(newTodo);
-        console.log(storage.getTodoListArr());
     });
 });
 

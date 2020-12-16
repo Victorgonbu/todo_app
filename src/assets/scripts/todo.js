@@ -1,10 +1,27 @@
 import storage from "./storage";
 
 const Todo = (title, description, dueDate, priority, notes, checklist, project) => {
-
-    function temporal(n, t) {
-        storage.addTodo(n);
-        storage.addTodo(t);
+    function displayNewTodo() {
+        const undoneTodo = document.querySelector('.undone');
+        const doneTodo = document.querySelector('.done');
+        const todoCard = document.createElement('div');
+        if(this.priority == 'High') {
+            todoCard.classList.add('high-priority');
+        }else if(this.priority == 'Medium') {
+            todoCard.classList.add('medium-priority');
+        }else {
+            todoCard.classList.add('low-priority');
+        }
+        if(this.checklist == false) {
+            undoneTodo.appendChild(todoCard);
+        }else {
+            doneTodo.appendChild(todoCard);
+        }
+        todoCard.classList.add('todo-card');
+        const todoTags = this.generateTodoTags();
+        todoTags.forEach(tag => {
+            todoCard.appendChild(tag);
+        });
     }
 
     function createTagContainer(attribute, todo) {
@@ -21,7 +38,7 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project) 
         return generatedtags;
 
     }
-    return {title, description, dueDate, priority, notes, checklist, project, generateTodoTags, temporal};
+    return {title, description, dueDate, priority, notes, checklist, project, generateTodoTags, displayNewTodo};
 }
 
 export default Todo;
