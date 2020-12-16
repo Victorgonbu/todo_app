@@ -1,4 +1,10 @@
 
+:root {
+    --main-black: #0C0900;
+    --main-orange: #F3944C;
+    --main-green: #D3FBD8;
+}
+
 body {
     height: 100vh;
 }
@@ -7,16 +13,19 @@ h3 {
     padding: 1em 0;
 }
 .main-container {
-    background-color: gainsboro;
+    background-color: var(--main-orange);
     min-height: 100%;
     width: 100%;
     display: flex;
     position: relative;
 }
 .projects {
-    border: 1px solid black;
     width: 25%;
-    padding: 1em;
+    padding: 2em;
+}
+
+.projects-title {
+    font-size: 1.5em;
 }
 
 .input-field {
@@ -25,11 +34,16 @@ h3 {
 }
 
 .new-project {
-    background-color: black;
+    background-color: var(--main-black);
     color: white;
+    padding: 4px 7px;
     margin: 0;
     width: 40%;
-    transform: translateX(-155%);
+    transform: translateX(-135%);
+    cursor: pointer;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+    white-space: nowrap;
 }
 
 .active-btn {
@@ -41,6 +55,9 @@ h3 {
     transform: scaleX(0);
     width: 60%;
     margin: 0;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    border: 1px solid white;
 }
 
 .active-input {
@@ -49,20 +66,20 @@ h3 {
 }
 
 .list {
-    padding: 0.5em 0;
+    padding: 1em 0;
 }
 
 .project-item {
     padding: 3px 0;
     cursor: pointer;
-    border-bottom: 1px solid white;
+    border-bottom: 1px solid var(--main-orange);
     width: 50%;
-    transition: 150ms ease-out;
+    transition: padding 150ms ease-out;
 }
 
 .project-item:hover {
-    border-bottom: 1px solid black;
-
+    border-bottom: 1px solid var(--main-green);
+   padding: 3px 3px;
 }
 
 .display-board {
@@ -78,7 +95,6 @@ h3 {
 }
 
 .active-board {
-    border: 1px solid red;
     transform: scaleX(1);
     transition: 200ms ease-out;
 }

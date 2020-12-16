@@ -11,10 +11,10 @@ const PROJECTLIST = document.querySelector('.list');
 ADDNEWPROJECTBTN.addEventListener('click', () => {
     ADDNEWPROJECTBTN.classList.toggle('active-btn');
     ADDNEWPROJECTINPUT.classList.toggle('active-input');
-    if(ADDNEWPROJECTBTN.textContent == 'Add project') {
-        ADDNEWPROJECTBTN.textContent = 'New project';
+    if(ADDNEWPROJECTBTN.textContent == 'Add Project') {
+        ADDNEWPROJECTBTN.textContent = 'New Project';
     } else {
-        ADDNEWPROJECTBTN.textContent = 'Add project';
+        ADDNEWPROJECTBTN.textContent = 'Add Project';
     }
     if(ADDNEWPROJECTINPUT.value) {
         const newProject = Project(ADDNEWPROJECTINPUT.value);
