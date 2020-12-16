@@ -1,8 +1,7 @@
 import storage from "./storage";
 
 const Todo = (title, description, dueDate, priority, notes, checklist, project) => {
-    //const BOARD = document.querySelector('.todo-lists');
-  
+
     function displayNewTodo() {
         const undoneContainer = document.querySelector('.undone');
         const doneContainer = document.querySelector('.done');
@@ -30,16 +29,27 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project) 
         
     }
 
-    function createTagContainer(attribute, todo) {
+    function capitalizeString(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1)
+    }
+
+    function createTagsContainer(attribute, todo) {
         const elementTag = document.createElement('p');
-        elementTag.innerHTML = `<span>${attribute}: </span> ${todo[attribute]}`;
+        elementTag.classList.add(`${attribute}-field`);
+        elementTag.classList.add('card-field');
+       
+        if(attribute == 'checklist'){
+            elementTag.innerHTML = "<input type='checkbox'>"
+        }else {
+            elementTag.innerHTML = `<span class="${attribute}-span">${capitalizeString(attribute)}: </span> <span class='${attribute}-${todo.priority} priority'> ${todo[attribute]}</span>`;
+        }
         return elementTag
     }
     function generateTodoTags() {
         let tags = ['title', 'description', 'dueDate', 'priority', 'notes', 'checklist']
         let generatedtags = [];
         tags.forEach(tag => {
-            generatedtags.push(createTagContainer(tag, this));
+            generatedtags.push(createTagsContainer(tag, this));
         })
         return generatedtags;
 

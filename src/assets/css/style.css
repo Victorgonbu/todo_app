@@ -1,7 +1,8 @@
 
 :root {
     --main-black: #0C0900;
-    --main-orange: #F3944C;
+    --main-orange: rgba(243, 148, 76, 0.4);
+    --second-orange: rgba(243, 148, 76, 0.2);
     --main-green: #D3FBD8;
 }
 
@@ -22,6 +23,7 @@ h3 {
 .projects {
     width: 25%;
     padding: 2em;
+   
 }
 
 .projects-title {
@@ -72,7 +74,7 @@ h3 {
 .project-item {
     padding: 3px 0;
     cursor: pointer;
-    border-bottom: 1px solid var(--main-orange);
+    border-bottom: 1px solid rgba(243, 148, 76, 0);
     width: 50%;
     transition: padding 150ms ease-out;
 }
@@ -105,14 +107,14 @@ h3 {
 }
 
 .add-todo-form {
-    border: 1px solid rosybrown;
+    border-bottom: 2px solid var(--main-orange);    
     padding: 0.5em;
     width: 37%;
 }
 
 .input {
     border-radius: 5px;
-    border: 1px solid gray;
+    border: 1px solid rgb(202, 202, 202);
     padding: 5px;
     margin-bottom: 5px;
 }
@@ -144,10 +146,16 @@ h3 {
 }
 
 .submit-todo {
-    border: 1px solid blue;
-    background-color: white;
+    background-color: var(--second-orange);
+    border: 1px solid white;
     font-weight: 600;
     padding: 5px 15px;
+    cursor: pointer;
+}
+
+.submit-todo:active {
+    transform: scale(0.95);
+
 }
 
 .board {
@@ -197,6 +205,7 @@ h3 {
     padding: 0.5em;
     transition: 200ms ease-out;
     width: 100%;
+    position: relative;
 }
 
 .todo {
@@ -204,4 +213,50 @@ h3 {
     background-color: green;
     display: flex;
     justify-content: center;
+}
+
+.priority-High {
+    background-color: rgb(235, 0, 0, 0.6);
+    padding: 0 7px;
+    border-radius: 5px;
+}
+
+.priority-Medium {
+    background-color: rgb(243, 148, 76, 1);
+    padding: 0 7px;
+    border-radius: 5px;
+}
+
+.priority-Low {
+    background-color:   rgb(145, 238, 143, 0.6);
+    padding: 0 7px;
+    border-radius: 5px;
+}
+
+.title-field {
+   
+}
+
+.card-field {
+    padding: 0.5em 0;
+}
+
+.priority-field {
+    position: absolute;
+    right: 0.5em;
+    top: 1.5em;
+    text-align: center;
+    width: min-content;
+}
+
+.checklist-field {
+    
+    position: absolute;
+    right: .5em;
+    bottom: 0.5em;
+}
+
+.priority-span {
+    display: inline-block;
+    width: 100%;
 }
