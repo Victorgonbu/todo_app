@@ -1,8 +1,8 @@
 
 :root {
     --main-black: #0C0900;
-    --main-orange: rgba(243, 148, 76, 0.4);
-    --second-orange: rgba(243, 148, 76, 0.2);
+    --main-orange: rgba(3, 105, 238, 0.1);
+    --second-orange: rgba(3, 104, 237, 0.2);
     --main-green: #D3FBD8;
 }
 
@@ -74,13 +74,13 @@ h3 {
 .project-item {
     padding: 3px 0;
     cursor: pointer;
-    border-bottom: 1px solid rgba(243, 148, 76, 0);
+    border-bottom: 2px solid rgba(243, 148, 76, 0);
     width: 50%;
     transition: padding 150ms ease-out;
 }
 
 .project-item:hover {
-    border-bottom: 1px solid var(--main-green);
+    border-bottom: 2px solid white;
    padding: 3px 3px;
 }
 
@@ -146,7 +146,8 @@ h3 {
 }
 
 .submit-todo {
-    background-color: var(--second-orange);
+    background-color: var(--main-black);
+    color: white;
     border: 1px solid white;
     font-weight: 600;
     padding: 5px 15px;
