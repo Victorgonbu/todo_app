@@ -17,7 +17,7 @@ ADDNEWPROJECTBTN.addEventListener('click', () => {
         ADDNEWPROJECTBTN.textContent = 'Add project';
     }
     if(ADDNEWPROJECTINPUT.value) {
-        const newProject = Project(ADDNEWPROJECTINPUT.value, storage.getTodoListArr());
+        const newProject = Project(ADDNEWPROJECTINPUT.value);
         const project = newProject.displayNewProject();
         PROJECTLIST.appendChild(project);
         const form = PROJECTSCONTAINER.querySelector('form');
@@ -35,6 +35,7 @@ ADDTODOBTNS.forEach(btn => {
         const priority = document.getElementById('priority').value;
         const project = document.querySelector('.project-title').textContent;
         let newTodo = Todo(title, description, dueDate, priority, notes, checkbox, project);
+        
         newTodo.displayNewTodo();
         storage.addTodo(newTodo);
     });

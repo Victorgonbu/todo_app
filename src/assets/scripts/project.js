@@ -1,6 +1,7 @@
 import storage from './storage.js';
 
-const Project = (name, TODOLIST) => {
+const Project = (name) => {
+    const TODOLIST = storage.getTodoListArr();
 
     function generateProjectTitle (project) {
         const header = document.createElement('h2');
@@ -9,39 +10,21 @@ const Project = (name, TODOLIST) => {
         return header;
     }
     
-    function generateProjectTodos(project, doneContainer, undoneContainer) {
+    function generateProjectTodos(project) {
         let todos = TODOLIST.filter(todo => todo.project == project.textContent);
-
+        console.log(todos); 
         if(todos) {
             todos.forEach(todo => {
-            
-                const container = document.createElement('div');
-                container.classList.add('todo-card');
-                if(todo.priority == 'High') {
-                    container.classList.add('high-priority');
-                }else if(todo.priority == 'Medium') {
-                    container.classList.add('medium-priority');
-                }else {
-                    container.classList.add('low-priority');
-                }
-                if(todo.checklist == false) {
-                    undoneContainer.appendChild(container);
-                }else {
-                    doneContainer.appendChild(container);
-                }
-                let todoAttributes = todo.generateTodoTags();
-                todoAttributes.forEach(attribute => {
-                    container.appendChild(attribute);
-                });
-                
+                console.log(todo);
+                todo.displayNewTodo();
             });
             
         }
     }
 
-    function clearProjectBoard(board) {
-        while(board.firstChild) {
-            board.removeChild(board.lastChild);
+    function clearProjectBoard(todolist) {
+        while(todolist.firstChild) {
+            todolist.removeChild(todolist.firstChild);
         }
     }
 
@@ -49,21 +32,30 @@ const Project = (name, TODOLIST) => {
         project.addEventListener('click', () => {
             
             const board = document.querySelector('.display-board');
-            const subBoard = document.querySelector('.board');
-            clearProjectBoard(subBoard);
-            const doneTodo = document.createElement('div');
-            doneTodo.classList.add('done');
-            const undoneTodo = document.createElement('div');
-            undoneTodo.classList.add('undone');
+            const subBoard = document.querySelector('.todo-lists');
+            clearProjectBoard(subBoard);    
+            const doneTodoContainer = document.createElement('div');
+            doneTodoContainer.classList.add('done');
+            const undoneTodoContainer = document.createElement('div');
+            undoneTodoContainer.classList.add('undone');
+
+            const doneTitle = document.createElement('h3');
+            doneTitle.textContent = 'Done';
+            doneTodoContainer.insertBefore(doneTitle, doneTodoContainer.firstChild);
             
-            subBoard.appendChild(undoneTodo);
-            subBoard.insertBefore(doneTodo, subBoard.firstChild);
+            const undoneTitle = document.createElement('h3');
+            undoneTitle.textContent = 'To Do';
+            undoneTodoContainer.insertBefore(undoneTitle, undoneTodoContainer.firstChild);
+            
+            subBoard.appendChild(doneTodoContainer);
+            subBoard.insertBefore(undoneTodoContainer, subBoard.firstChild);
             board.classList.add('active-board');
            
 
-            let projectTitle = generateProjectTitle(project, subBoard);
+            let projectTitle = generateProjectTitle(project);
             subBoard.insertBefore(projectTitle, subBoard.firstChild);
-            generateProjectTodos(project, doneTodo, undoneTodo);
+            generateProjectTodos(project);
+    
         
         });
     }
