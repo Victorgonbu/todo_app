@@ -44,6 +44,7 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project) 
         elementTag.classList.add('card-field');
        
         if(attribute == 'checklist'){
+            if(todo.checklist == true) return;
             const checkbox = document.createElement('input');
             checkbox.classList.add('.checkbox-card');
             checkbox.setAttribute('type','checkbox');
