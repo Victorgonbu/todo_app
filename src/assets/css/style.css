@@ -167,7 +167,8 @@ h3 {
 }
 
 .project-title {
-    text-transform: capitalize  ;
+    text-transform: capitalize;
+    font-size: 1.5em;
 }
 
 

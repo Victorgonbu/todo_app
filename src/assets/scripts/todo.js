@@ -33,13 +33,29 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project) 
         return string.charAt(0).toUpperCase() + string.slice(1)
     }
 
+    function removeCard(card) {
+        const undoneTodos = document.querySelector('.undone');
+        undoneTodos.removeChild(card);
+    }
+
     function createTagsContainer(attribute, todo) {
-        const elementTag = document.createElement('p');
+        let elementTag = document.createElement('p');
         elementTag.classList.add(`${attribute}-field`);
         elementTag.classList.add('card-field');
        
         if(attribute == 'checklist'){
-            elementTag.innerHTML = "<input type='checkbox'>"
+            const checkbox = document.createElement('input');
+            checkbox.classList.add('.checkbox-card');
+            checkbox.setAttribute('type','checkbox');
+            elementTag.appendChild(checkbox);
+
+            checkbox.addEventListener('click', () => {
+                todo.checklist = true;
+                const card = checkbox.closest('.todo-card');
+                removeCard(card);
+                todo.displayNewTodo();
+            });
+            
         }else {
             elementTag.innerHTML = `<span class="${attribute}-span">${capitalizeString(attribute)}: </span> <span class='${attribute}-${todo.priority} priority'> ${todo[attribute]}</span>`;
         }
