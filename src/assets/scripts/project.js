@@ -61,7 +61,7 @@ const Project = (name) => {
     }
     
     function displayNewProject() {
-        storage.addProject(this);
+        
         const project = document.createElement('li');
         project.classList.add('project-item');
         project.textContent = this.name; 

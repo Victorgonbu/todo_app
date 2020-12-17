@@ -19,6 +19,7 @@ ADDNEWPROJECTBTN.addEventListener('click', () => {
     if(ADDNEWPROJECTINPUT.value) {
         const newProject = Project(ADDNEWPROJECTINPUT.value);
         const project = newProject.displayNewProject();
+        storage.addProject(newProject);
         PROJECTLIST.appendChild(project);
         const form = PROJECTSCONTAINER.querySelector('form');
         form.reset();
@@ -42,4 +43,6 @@ ADDTODOBTNS.forEach(btn => {
         form.reset();
     });
 });
+
+storage.savedProjects(); 
 
