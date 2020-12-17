@@ -1,5 +1,5 @@
 import storage from './storage.js';
-
+import Todo from './todo.js'
 const Project = (name) => {
     const TODOLIST = storage.getTodoListArr();
 
@@ -12,10 +12,10 @@ const Project = (name) => {
     
     function generateProjectTodos(project) {
         let todos = TODOLIST.filter(todo => todo.project == project.textContent);
-        console.log(todos); 
+    
         if(todos) {
             todos.forEach(todo => {
-                console.log(todo);
+                todo = Todo(todo.title, todo.description, todo.dueDate, todo.priority, todo.notes, todo.checklist, todo.project);
                 todo.displayNewTodo();
             });
             

@@ -9,7 +9,7 @@ const storage = (() => {
             PROJECTARR = localStorage.getItem('projectarr');
             PROJECTARR = JSON.parse(PROJECTARR);
         }
-        console.log(PROJECTARR);
+        
         return PROJECTARR;
         
     }
@@ -38,7 +38,7 @@ const storage = (() => {
         
         if(getProjectArr().length > 0) {
             getProjectArr().forEach(project => {
-                console.log(project);
+                
                 project = Project(project.name) 
                 projectList.appendChild(project.displayNewProject());
             });
