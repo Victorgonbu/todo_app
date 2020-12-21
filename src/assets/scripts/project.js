@@ -1,8 +1,7 @@
 import storage from './storage.js';
-import Todo from './todo.js'
-const Project = (name) => {
-    
 
+const Project = (name) => {
+     
     function generateProjectTitle (project) {
         const header = document.createElement('h2');
         header.classList.add('project-title');
@@ -26,23 +25,28 @@ const Project = (name) => {
         }
     }
 
+    function generateContainer(tag, tagClass, textContent = '') {
+        const container = document.createElement(tag);
+        container.classList.add(tagClass);
+        container.textContent = textContent;
+        return container;
+    }
+
     function projectClickListener(project) {
         project.addEventListener('click', () => {
             
             const board = document.querySelector('.display-board');
             const subBoard = document.querySelector('.todo-lists');
-            clearProjectBoard(subBoard);    
-            const doneTodoContainer = document.createElement('div');
-            doneTodoContainer.classList.add('done');
-            const undoneTodoContainer = document.createElement('div');
-            undoneTodoContainer.classList.add('undone');
 
-            const doneTitle = document.createElement('h3');
-            doneTitle.textContent = 'Done';
+            clearProjectBoard(subBoard);    
+
+            const doneTodoContainer = generateContainer('div', 'done');
+            const undoneTodoContainer = generateContainer('div', 'undone');
+
+            const doneTitle = generateContainer('h3', 'done-title', 'Done');
             doneTodoContainer.insertBefore(doneTitle, doneTodoContainer.firstChild);
             
-            const undoneTitle = document.createElement('h3');
-            undoneTitle.textContent = 'To Do';
+            const undoneTitle = generateContainer('h3', 'undone-title', 'To Do');
             undoneTodoContainer.insertBefore(undoneTitle, undoneTodoContainer.firstChild);
             
             subBoard.appendChild(doneTodoContainer);

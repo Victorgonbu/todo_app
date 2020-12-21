@@ -5,7 +5,6 @@ const storage = (() => {
     let TODOLISTARR;
 
     function getProjectArr() {
-        console.log();
             PROJECTARR = JSON.parse(localStorage.getItem('projectarr'));
             if(PROJECTARR) {
               PROJECTARR = PROJECTARR.map(project => project = Project(project.name));
@@ -48,7 +47,6 @@ const storage = (() => {
         
         if(getProjectArr().length > 0) {
             getProjectArr().forEach(project => {
-        
                 projectList.appendChild(project.displayNewProject());
             });
         }
