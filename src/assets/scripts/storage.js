@@ -1,60 +1,61 @@
 import Project from './project.js';
 import Todo from './todo.js';
+
 const storage = (() => {
-    let PROJECTARR;
-    let TODOLISTARR;
+  let PROJECTARR;
+  let TODOLISTARR;
 
-    function getProjectArr() {
-            PROJECTARR = JSON.parse(localStorage.getItem('projectarr'));
-            if(PROJECTARR) {
-              PROJECTARR = PROJECTARR.map(project => project = Project(project.name));
-            } else {
-                PROJECTARR =  [];
-            }
-
-            return PROJECTARR;
+  function getProjectArr() {
+    PROJECTARR = JSON.parse(localStorage.getItem('projectarr'));
+    if (PROJECTARR) {
+      PROJECTARR = PROJECTARR.map(project => project = Project(project.name));
+    } else {
+      PROJECTARR = [];
     }
 
-    function updateTodo(todo) {
-        let index = TODOLISTARR.indexOf(todo);
-        todo.checklist = true;
-        TODOLISTARR[index] = todo
-        localStorage.setItem('todolistarr', JSON.stringify(TODOLISTARR));
-    }
-    
-    function getTodoListArr() {
-       TODOLISTARR = JSON.parse(localStorage.getItem('todolistarr'));
-       if(TODOLISTARR){
-            TODOLISTARR = TODOLISTARR.map(todo => todo = Todo(todo.title, todo.description, todo.dueDate, todo.priority, todo.notes, todo.checklist, todo.project))
-       }else {
-            TODOLISTARR = [];
-       }
-       return TODOLISTARR;
-    }
+    return PROJECTARR;
+  }
 
-    function addProject(project) {
-        PROJECTARR.push(project);
-        localStorage.setItem('projectarr', JSON.stringify(PROJECTARR));
-    }   
+  function updateTodo(todo) {
+    const index = TODOLISTARR.indexOf(todo);
+    todo.checklist = true;
+    TODOLISTARR[index] = todo;
+    localStorage.setItem('todolistarr', JSON.stringify(TODOLISTARR));
+  }
 
-    function addTodo(todo) {
-        TODOLISTARR.push(todo);
-        localStorage.setItem('todolistarr', JSON.stringify(TODOLISTARR));
+  function getTodoListArr() {
+    TODOLISTARR = JSON.parse(localStorage.getItem('todolistarr'));
+    if (TODOLISTARR) {
+      TODOLISTARR = TODOLISTARR.map(todo => todo = Todo(todo.title, todo.description, todo.dueDate, todo.priority, todo.notes, todo.checklist, todo.project));
+    } else {
+      TODOLISTARR = [];
     }
+    return TODOLISTARR;
+  }
 
-    function savedProjects() {
-        const projectList = document.querySelector('.list');
-        
-        if(getProjectArr().length > 0) {
-            getProjectArr().forEach(project => {
-                projectList.appendChild(project.displayNewProject());
-            });
-        }
-    }
+  function addProject(project) {
+    PROJECTARR.push(project);
+    localStorage.setItem('projectarr', JSON.stringify(PROJECTARR));
+  }
 
-    return {
-        getProjectArr, getTodoListArr, addProject, addTodo, savedProjects, updateTodo
+  function addTodo(todo) {
+    TODOLISTARR.push(todo);
+    localStorage.setItem('todolistarr', JSON.stringify(TODOLISTARR));
+  }
+
+  function savedProjects() {
+    const projectList = document.querySelector('.list');
+
+    if (getProjectArr().length > 0) {
+      getProjectArr().forEach(project => {
+        projectList.appendChild(project.displayNewProject());
+      });
     }
+  }
+
+  return {
+    getProjectArr, getTodoListArr, addProject, addTodo, savedProjects, updateTodo,
+  };
 })();
 
 export default storage;
