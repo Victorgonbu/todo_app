@@ -1,7 +1,7 @@
 import storage from './storage.js';
 import Todo from './todo.js'
 const Project = (name) => {
-    const TODOLIST = storage.getTodoListArr();
+    
 
     function generateProjectTitle (project) {
         const header = document.createElement('h2');
@@ -11,14 +11,12 @@ const Project = (name) => {
     }
     
     function generateProjectTodos(project) {
-        let todos = TODOLIST.filter(todo => todo.project == project.textContent);
+        let todos = storage.getTodoListArr().filter(todo => todo.project == project.textContent);
     
         if(todos) {
             todos.forEach(todo => {
-                todo = Todo(todo.title, todo.description, todo.dueDate, todo.priority, todo.notes, todo.checklist, todo.project);
                 todo.displayNewTodo();
             });
-            
         }
     }
 

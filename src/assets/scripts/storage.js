@@ -1,28 +1,38 @@
 import Project from './project.js';
+import Todo from './todo.js';
 const storage = (() => {
-    let PROJECTARR = [];
-    let TODOLISTARR = [];
+    let PROJECTARR;
+    let TODOLISTARR;
 
-    
     function getProjectArr() {
-        if(localStorage.getItem('projectarr')) {
-            PROJECTARR = localStorage.getItem('projectarr');
-            PROJECTARR = JSON.parse(PROJECTARR);
-        }
-        
-        return PROJECTARR;
-        
+        console.log();
+            PROJECTARR = JSON.parse(localStorage.getItem('projectarr'));
+            if(PROJECTARR) {
+              PROJECTARR = PROJECTARR.map(project => project = Project(project.name));
+            } else {
+                PROJECTARR =  [];
+            }
+
+            return PROJECTARR;
     }
 
-    function getTodoListArr() {
-        if(localStorage.getItem('todolistarr')) {
-            TODOLISTARR = localStorage.getItem('todolistarr');
-            TODOLISTARR = JSON.parse(TODOLISTARR);
-        }
-        
-        
-        return TODOLISTARR;
+    function updateTodo(todo) {
+        let index = TODOLISTARR.indexOf(todo);
+        todo.checklist = true;
+        TODOLISTARR[index] = todo
+        localStorage.setItem('todolistarr', JSON.stringify(TODOLISTARR));
     }
+    
+    function getTodoListArr() {
+       TODOLISTARR = JSON.parse(localStorage.getItem('todolistarr'));
+       if(TODOLISTARR){
+            TODOLISTARR = TODOLISTARR.map(todo => todo = Todo(todo.title, todo.description, todo.dueDate, todo.priority, todo.notes, todo.checklist, todo.project))
+       }else {
+            TODOLISTARR = [];
+       }
+       return TODOLISTARR;
+    }
+
     function addProject(project) {
         PROJECTARR.push(project);
         localStorage.setItem('projectarr', JSON.stringify(PROJECTARR));
@@ -38,15 +48,14 @@ const storage = (() => {
         
         if(getProjectArr().length > 0) {
             getProjectArr().forEach(project => {
-                
-                project = Project(project.name) 
+        
                 projectList.appendChild(project.displayNewProject());
             });
         }
     }
 
     return {
-        getProjectArr, getTodoListArr, addProject, addTodo, savedProjects
+        getProjectArr, getTodoListArr, addProject, addTodo, savedProjects, updateTodo
     }
 })();
 

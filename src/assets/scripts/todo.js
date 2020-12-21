@@ -51,7 +51,7 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project) 
             elementTag.appendChild(checkbox);
 
             checkbox.addEventListener('click', () => {
-                todo.checklist = true;
+                storage.updateTodo(todo);
                 const card = checkbox.closest('.todo-card');
                 removeCard(card);
                 todo.displayNewTodo();
