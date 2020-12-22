@@ -1,6 +1,6 @@
-import storage from './storage.js';
-import Todo from './todo.js';
-import Project from './project.js';
+import storage from './storage';
+import Todo from './todo';
+import Project from './project';
 
 const ADDNEWPROJECTBTN = document.querySelector('.new-project');
 const ADDNEWPROJECTINPUT = document.querySelector('.new-project-input');
@@ -11,7 +11,7 @@ const PROJECTLIST = document.querySelector('.list');
 ADDNEWPROJECTBTN.addEventListener('click', () => {
   ADDNEWPROJECTBTN.classList.toggle('active-btn');
   ADDNEWPROJECTINPUT.classList.toggle('active-input');
-  if (ADDNEWPROJECTBTN.textContent == 'Add Project') {
+  if (ADDNEWPROJECTBTN.textContent === 'Add Project') {
     ADDNEWPROJECTBTN.textContent = 'New Project';
   } else {
     ADDNEWPROJECTBTN.textContent = 'Add Project';
@@ -36,7 +36,8 @@ ADDTODOBTNS.forEach(btn => {
     const priority = document.getElementById('priority').value;
     const project = document.querySelector('.project-title').textContent;
     const form = document.querySelector('.add-todo-form');
-    const newTodo = Todo(title, description, dueDate, priority, notes, checkbox, project, storage.updateTodo);
+    const newTodo = Todo(title, description, dueDate, priority, notes,
+      checkbox, project, storage.updateTodo);
 
     newTodo.displayNewTodo();
     storage.addTodo(newTodo);

@@ -1,5 +1,5 @@
-import Project from './project.js';
-import Todo from './todo.js';
+import Project from './project';
+import Todo from './todo';
 
 const storage = (() => {
   let PROJECTARR;
@@ -8,7 +8,7 @@ const storage = (() => {
   function getProjectArr() {
     PROJECTARR = JSON.parse(localStorage.getItem('projectarr'));
     if (PROJECTARR) {
-      PROJECTARR = PROJECTARR.map(project => project = Project(project.name, storage.getTodoListArr));
+      PROJECTARR = PROJECTARR.map(project => Project(project.name, storage.getTodoListArr));
     } else {
       PROJECTARR = [];
     }
@@ -26,7 +26,8 @@ const storage = (() => {
   function getTodoListArr() {
     TODOLISTARR = JSON.parse(localStorage.getItem('todolistarr'));
     if (TODOLISTARR) {
-      TODOLISTARR = TODOLISTARR.map(todo => todo = Todo(todo.title, todo.description, todo.dueDate, todo.priority, todo.notes, todo.checklist, todo.project, updateTodo));
+      TODOLISTARR = TODOLISTARR.map(todo => Todo(todo.title, todo.description,
+        todo.dueDate, todo.priority, todo.notes, todo.checklist, todo.project, updateTodo));
     } else {
       TODOLISTARR = [];
     }
