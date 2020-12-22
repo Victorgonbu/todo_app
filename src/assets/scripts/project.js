@@ -1,6 +1,4 @@
-import storage from './storage.js';
-
-const Project = (name) => {
+const Project = (name, storage) => {
   function generateProjectTitle(project) {
     const header = document.createElement('h2');
     header.classList.add('project-title');
@@ -9,7 +7,8 @@ const Project = (name) => {
   }
 
   function generateProjectTodos(project) {
-    const todos = storage.getTodoListArr().filter(todo => todo.project == project.textContent);
+    
+    const todos = storage().filter(todo => todo.project == project.textContent);
 
     if (todos) {
       todos.forEach(todo => {

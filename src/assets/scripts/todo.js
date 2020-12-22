@@ -1,6 +1,4 @@
-import storage from './storage';
-
-const Todo = (title, description, dueDate, priority, notes, checklist, project) => {
+const Todo = (title, description, dueDate, priority, notes, checklist, project, storage) => {
   function addPriorityClass(todo, todoCard) {
     switch (todo.priority) {
       case 'High':
@@ -53,7 +51,7 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project) 
 
   function checkboxEventListener(checkbox, todo) {
     checkbox.addEventListener('click', () => {
-      storage.updateTodo(todo);
+      storage(todo);
       const card = checkbox.closest('.todo-card');
       removeCard(card);
       todo.displayNewTodo();
