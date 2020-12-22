@@ -2,7 +2,7 @@
 
 This is a To Do List App using JavaScript and Webpack. With as goal learning how to apply Object Oriented Programming best practices.
 
-![screenshot](./src/imgs/SCREENSHOT.PNG)
+![screenshot](./src/assets/imgs/SCREENSHOT.PNG)
 
 
 ## Built With
@@ -32,6 +32,7 @@ To get a local copy up and running follow these simple example steps.
 - The to-do form will be shown together with all related todos when a project is clicked, all the related added todos can be marked as 'done' by clicking on the rightmost checkbox in the todo card. All the 'done' to-dos are displayed with a lower opacity to highlight the undone to-dos.
 
 ## Author
+
 👤 Victor Gonzalez
 
 - Github: [@Shaqri](https://github.com/shaqri)
