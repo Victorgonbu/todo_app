@@ -1,264 +1,249 @@
 
 :root {
-    --main-black: #0C0900;
-    --main-orange: rgba(3, 105, 238, 0.1);
-    --second-orange: rgba(3, 104, 237, 0.2);
-    --main-green: #D3FBD8;
+  --main-black: #0c0900;
+  --main-orange: rgba(3, 105, 238, 0.1);
+  --second-orange: rgba(3, 104, 237, 0.2);
+  --main-green: #d3fbd8;
 }
 
 body {
-    height: 100vh;
+  height: 100vh;
 }
 
 h3 {
-    padding: 1em 0;
+  padding: 1em 0;
 }
+
 .main-container {
-    background-color: var(--main-orange);
-    min-height: 100%;
-    width: 100%;
-    display: flex;
-    position: relative;
+  background-color: var(--main-orange);
+  min-height: 100%;
+  width: 100%;
+  display: flex;
+  position: relative;
 }
+
 .projects {
-    width: 25%;
-    padding: 2em;
-   
+  width: 25%;
+  padding: 2em;
 }
 
 .projects-title {
-    font-size: 1.5em;
+  font-size: 1.5em;
 }
 
 .input-field {
-    display: flex;
-    padding-top: 1em;
+  display: flex;
+  padding-top: 1em;
 }
 
 .new-project {
-    background-color: var(--main-black);
-    color: white;
-    padding: 4px 7px;
-    margin: 0;
-    width: 40%;
-    transform: translateX(-135%);
-    cursor: pointer;
-    border-top-right-radius: 5px;
-    border-bottom-right-radius: 5px;
-    white-space: nowrap;
+  background-color: var(--main-black);
+  color: white;
+  padding: 4px 7px;
+  margin: 0;
+  width: 40%;
+  transform: translateX(-135%);
+  cursor: pointer;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  white-space: nowrap;
 }
 
 .active-btn {
-    transform: translateX(0);
-    transition: 150ms ease-in;
+  transform: translateX(0);
+  transition: 150ms ease-in;
 }
 
 .new-project-input {
-    transform: scaleX(0);
-    width: 60%;
-    margin: 0;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
-    border: 1px solid white;
+  transform: scaleX(0);
+  width: 60%;
+  margin: 0;
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+  border: 1px solid white;
 }
 
 .active-input {
-    transform: scaleX(1);
-    transition: 150ms ease-in;
+  transform: scaleX(1);
+  transition: 150ms ease-in;
 }
 
 .list {
-    padding: 1em 0;
+  padding: 1em 0;
 }
 
 .project-item {
-    padding: 3px 0;
-    cursor: pointer;
-    border-bottom: 2px solid rgba(243, 148, 76, 0);
-    width: 50%;
-    transition: padding 150ms ease-out;
+  padding: 3px 0;
+  cursor: pointer;
+  border-bottom: 2px solid rgba(243, 148, 76, 0);
+  width: 50%;
+  transition: padding 150ms ease-out;
 }
 
 .project-item:hover {
-    border-bottom: 2px solid white;
-   padding: 3px 3px;
+  border-bottom: 2px solid white;
+  padding: 3px 3px;
 }
 
 .display-board {
-    width: 100%;
-    transform: scaleX(0);
-    background-color: white;
-    border: 1px solid white;
-    transition: 200ms ease-out;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding-top: 1em;
+  width: 100%;
+  transform: scaleX(0);
+  background-color: white;
+  border: 1px solid white;
+  transition: 200ms ease-out;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1em;
 }
 
 .active-board {
-    transform: scaleX(1);
-    transition: 200ms ease-out;
+  transform: scaleX(1);
+  transition: 200ms ease-out;
 }
 
 .wrapper-field {
-    display: flex;
-    justify-content: space-between;
+  display: flex;
+  justify-content: space-between;
 }
 
 .add-todo-form {
-    border-bottom: 2px solid var(--main-orange);    
-    padding: 0.5em;
-    width: 37%;
+  border-bottom: 2px solid var(--main-orange);
+  padding: 0.5em;
+  width: 37%;
 }
 
 .input {
-    border-radius: 5px;
-    border: 1px solid rgb(202, 202, 202);
-    padding: 5px;
-    margin-bottom: 5px;
+  border-radius: 5px;
+  border: 1px solid rgb(202, 202, 202);
+  padding: 5px;
+  margin-bottom: 5px;
 }
 
 .text-input {
-    width: 100%;
-    
+  width: 100%;
 }
 
 .area-input {
-    resize: none;
-    width: calc(100% - 1em);
+  resize: none;
+  width: calc(100% - 1em);
 }
 
 .notes-input {
-    width: 85%;
-
-}   
+  width: 85%;
+}
 
 .notes-label {
-    width: calc(15% - 1.1em);
-    display: inline-block;
+  width: calc(15% - 1.1em);
+  display: inline-block;
 }
 
 .submit-field {
-    display: flex;
-    justify-content: flex-end;
-    width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
 }
 
 .submit-todo {
-    background-color: var(--main-black);
-    color: white;
-    border: 1px solid white;
-    font-weight: 600;
-    padding: 5px 15px;
-    cursor: pointer;
+  background-color: var(--main-black);
+  color: white;
+  border: 1px solid white;
+  font-weight: 600;
+  padding: 5px 15px;
+  cursor: pointer;
 }
 
 .submit-todo:active {
-    transform: scale(0.95);
-
+  transform: scale(0.95);
 }
 
 .board {
-    margin-top: 1em;
-    padding: 1em;
-    width: 100%;
-   
+  margin-top: 1em;
+  padding: 1em;
+  width: 100%;
 }
 
 .project-title {
-    text-transform: capitalize;
-    font-size: 1.5em;
+  text-transform: capitalize;
+  font-size: 1.5em;
 }
-
-
 
 .done {
-    width: 49%;
-    float: right;
-    opacity: 0.4;
+  width: 49%;
+  float: right;
+  opacity: 0.4;
 }
-
 
 .undone {
-    width: 49%;
-    float: left;
-    
-    
+  width: 49%;
+  float: left;
 }
 
-
-
 .high-priority {
-    border: 1px solid red;
+  border: 1px solid red;
 }
 
 .medium-priority {
-    border: 1px solid orange;
+  border: 1px solid orange;
 }
 
 .low-priority {
-    border: 1px solid green;
+  border: 1px solid green;
 }
 
 .todo-card {
-    border-radius: 5px;
-    margin: 10px 0;
-    padding: 0.5em;
-    transition: 200ms ease-out;
-    width: 100%;
-    position: relative;
+  border-radius: 5px;
+  margin: 10px 0;
+  padding: 0.5em;
+  transition: 200ms ease-out;
+  width: 100%;
+  position: relative;
 }
 
 .todo {
-    width: 50%; 
-    background-color: green;
-    display: flex;
-    justify-content: center;
+  width: 50%;
+  background-color: green;
+  display: flex;
+  justify-content: center;
 }
 
 .priority-High {
-    background-color: rgb(235, 0, 0, 0.6);
-    padding: 0 7px;
-    border-radius: 5px;
+  background-color: rgb(235, 0, 0, 0.6);
+  padding: 0 7px;
+  border-radius: 5px;
 }
 
 .priority-Medium {
-    background-color: rgb(243, 148, 76, 1);
-    padding: 0 7px;
-    border-radius: 5px;
+  background-color: rgb(243, 148, 76, 1);
+  padding: 0 7px;
+  border-radius: 5px;
 }
 
 .priority-Low {
-    background-color:   rgb(145, 238, 143, 0.6);
-    padding: 0 7px;
-    border-radius: 5px;
-}
-
-.title-field {
-   
+  background-color: rgb(145, 238, 143, 0.6);
+  padding: 0 7px;
+  border-radius: 5px;
 }
 
 .card-field {
-    padding: 0.5em 0;
+  padding: 0.5em 0;
 }
 
 .priority-field {
-    position: absolute;
-    right: 0.5em;
-    top: 1.5em;
-    text-align: center;
-    width: min-content;
+  position: absolute;
+  right: 0.5em;
+  top: 1.5em;
+  text-align: center;
+  width: min-content;
 }
 
 .checklist-field {
-    
-    position: absolute;
-    right: .5em;
-    bottom: 0.5em;
+  position: absolute;
+  right: 0.5em;
+  bottom: 0.5em;
 }
 
 .priority-span {
-    display: inline-block;
-    width: 100%;
+  display: inline-block;
+  width: 100%;
 }
