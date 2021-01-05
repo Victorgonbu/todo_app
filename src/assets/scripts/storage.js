@@ -5,7 +5,7 @@ const storage = (() => {
   let PROJECTARR;
   let TODOLISTARR;
 
-  function getProjectArr() {
+  const getProjectArr = () => {
     PROJECTARR = JSON.parse(localStorage.getItem('projectarr'));
     if (PROJECTARR) {
       PROJECTARR = PROJECTARR.map(project => Project(project.name, storage.getTodoListArr));
@@ -16,14 +16,14 @@ const storage = (() => {
     return PROJECTARR;
   }
 
-  function updateTodo(todo) {
+  const updateTodo = (todo) => {
     const index = TODOLISTARR.indexOf(todo);
     todo.checklist = true;
     TODOLISTARR[index] = todo;
     localStorage.setItem('todolistarr', JSON.stringify(TODOLISTARR));
   }
 
-  function getTodoListArr() {
+  const getTodoListArr = () => {
     TODOLISTARR = JSON.parse(localStorage.getItem('todolistarr'));
     if (TODOLISTARR) {
       TODOLISTARR = TODOLISTARR.map(todo => Todo(todo.title, todo.description,
@@ -34,17 +34,17 @@ const storage = (() => {
     return TODOLISTARR;
   }
 
-  function addProject(project) {
+  const addProject = (project) => {
     PROJECTARR.push(project);
     localStorage.setItem('projectarr', JSON.stringify(PROJECTARR));
   }
 
-  function addTodo(todo) {
+  const addTodo = (todo) => {
     TODOLISTARR.push(todo);
     localStorage.setItem('todolistarr', JSON.stringify(TODOLISTARR));
   }
 
-  function savedProjects() {
+  const savedProjects = () => {
     const projectList = document.querySelector('.list');
 
     if (getProjectArr().length > 0) {

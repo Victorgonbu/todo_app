@@ -1,12 +1,13 @@
 const Project = (name, storage) => {
-  function generateProjectTitle(project) {
+
+  const generateProjectTitle = (project) => {
     const header = document.createElement('h2');
     header.classList.add('project-title');
     header.textContent = project.textContent;
     return header;
   }
 
-  function generateProjectTodos(project) {
+  const generateProjectTodos = (project) => {
     const todos = storage().filter(todo => todo.project === project.textContent);
 
     if (todos) {
@@ -16,20 +17,20 @@ const Project = (name, storage) => {
     }
   }
 
-  function clearProjectBoard(todolist) {
+  const clearProjectBoard = (todolist) => {
     while (todolist.firstChild) {
       todolist.removeChild(todolist.firstChild);
     }
   }
 
-  function generateContainer(tag, tagClass, textContent = '') {
+  const generateContainer = (tag, tagClass, textContent = '') => {
     const container = document.createElement(tag);
     container.classList.add(tagClass);
     container.textContent = textContent;
     return container;
   }
 
-  function projectClickListener(project) {
+  const projectClickListener = (project) => {
     project.addEventListener('click', () => {
       const board = document.querySelector('.display-board');
       const subBoard = document.querySelector('.todo-lists');
@@ -56,10 +57,10 @@ const Project = (name, storage) => {
     });
   }
 
-  function displayNewProject() {
+  const displayNewProject = () => {
     const project = document.createElement('li');
     project.classList.add('project-item');
-    project.textContent = this.name;
+    project.textContent = name;
     projectClickListener(project);
 
     return project;
