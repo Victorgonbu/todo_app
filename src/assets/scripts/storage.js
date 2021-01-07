@@ -18,7 +18,6 @@ const storage = (() => {
 
   const updateTodo = (todo) => {
     const index = TODOLISTARR.indexOf(todo);
-    todo.checklist = true;
     TODOLISTARR[index] = todo;
     localStorage.setItem('todolistarr', JSON.stringify(TODOLISTARR));
   }

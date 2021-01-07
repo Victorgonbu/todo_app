@@ -257,3 +257,35 @@ h3 {
   font-size: 1.2em;
   cursor: pointer;
 }
+
+.label {
+  vertical-align: text-top;
+}
+
+.checkbox-card {
+  vertical-align: bottom;
+  margin: 0;
+}
+
+.edit-button {
+  position: absolute;
+  top: 4px;
+  right: 1.5em;
+  cursor: pointer;
+}
+
+.edit-input {
+  border: 0;
+  border-bottom: 1px solid gray;
+}
+
+.save-button {
+  position: absolute;
+  bottom: 1em;
+  right: 1em;
+  background-color: black;
+  color: white;
+  border: white;
+  border-radius: 2px;
+  padding: 5px 7px;
+}

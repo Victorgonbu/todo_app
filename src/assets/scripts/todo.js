@@ -38,11 +38,79 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
       const card = removeButton.closest('.todo-card');
       removeCard(card);
       deleteTodo(this);
+
     });
     
     todoCard.appendChild(removeButton);
 
+    const editButton =  document.createElement('span');
+    editButton.innerHTML = "<i class='fas fa-edit edit-button'></i>";
+    editButton.addEventListener('click', () => {
+      const todoCard = editButton.closest('.todo-card');
+      let editTodo = []
+      const editTitle = todoCard.querySelector('.title-card');
+      editTodo.push(editTitle);
+      const editDescription = todoCard.querySelector('.description-card');
+      editTodo.push(editDescription);
+      const editDuedate = todoCard.querySelector('.dueDate-card');
+      editTodo.push(editDuedate);
+      const editNotes = todoCard.querySelector('.notes-card');
+      editTodo.push(editNotes);
+
+      editTodo.forEach(editField => {
+        const fieldContent = editField.textContent;
+        const classes = editField.classList;
+        
+      
+        if (editField === editDuedate) {
+          editField.innerHTML = `<input type='date' placeholder='${fieldContent}' class='edit-input ${classes[1]}-edit'>`;
+        }else {
+          editField.innerHTML = `<input type='text' placeholder='${fieldContent}' class='edit-input ${classes[1]}-edit'>`;
+        }
        
+        
+      });
+
+      todoCard.removeChild(todoCard.lastChild);
+
+      const saveButton = document.createElement('button');
+      saveButton.classList.add('save-button');
+      saveButton.innerHTML = "<span>Save</span>";
+
+      saveButton.addEventListener('click', () => {
+        const editedTitle = todoCard.querySelector('.title-card-edit').value;
+        const editedDescription = todoCard.querySelector('.description-card-edit').value;
+        const editedDuedate = todoCard.querySelector('.dueDate-card-edit').value;
+        const editedNotes = todoCard.querySelector('.notes-card-edit').value;
+
+        this.title = editedTitle;
+        this.description = editedDescription;
+        this.dueDate = editedDuedate;
+        this.notes = editedNotes;
+        updateTodo(this);
+
+        todoCard.removeChild(todoCard.lastChild);
+
+        const checkbox = createTagsContainer('checklist', this);
+        checkbox.classList.add('checkbox-card');
+
+        todoCard.appendChild(checkbox);
+
+        editTitle.textContent = this.title;
+        editDescription.textContent = this.description;
+        editDuedate.textContent = this.dueDate;
+        editNotes.textContent = this.notes;
+
+      });
+
+      todoCard.appendChild(saveButton);
+
+
+
+
+    });
+    
+    todoCard.appendChild(editButton);
 
     todoCard.classList.add('todo-card');
     const todoTags = this.generateTodoTags();
@@ -68,6 +136,7 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
 
   function checkboxEventListener(checkbox, todo) {
     checkbox.addEventListener('click', () => {
+      todo.checklist = true;
       updateTodo(todo);
       const card = checkbox.closest('.todo-card');
       removeCard(card);
@@ -84,13 +153,15 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
    
     if (attribute === 'checklist') {
       if (todo.checklist === true) return elementTag;
+  
       let checkbox = document.createElement('input');
-      checkbox.classList.add('.checkbox-card');
+      checkbox.classList.add('checkbox-card');
       checkbox.setAttribute('type', 'checkbox');
       checkbox = checkboxEventListener(checkbox, todo);
       elementTag.appendChild(checkbox);
+      
     } else {
-      elementTag.innerHTML = `<span class="${attribute}-span">${capitalizeString(attribute)}: </span> <span class='${attribute}-${todo.priority} priority'> ${todo[attribute]}</span>`;
+      elementTag.innerHTML = `<span class="${attribute}-span">${capitalizeString(attribute)}: </span> <span class='${attribute}-${todo.priority} ${attribute}-card'> ${todo[attribute]}</span>`;
     }
     return elementTag;
   }
