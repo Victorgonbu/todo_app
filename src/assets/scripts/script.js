@@ -37,7 +37,7 @@ ADDTODOBTNS.forEach(btn => {
     const project = document.querySelector('.project-title').textContent;
     const form = document.querySelector('.add-todo-form');
     const newTodo = Todo(title, description, dueDate, priority, notes,
-      checkbox, project, storage.updateTodo);
+      checkbox, project, storage.updateTodo, storage.deleteTodo);
 
     newTodo.displayNewTodo();
     storage.addTodo(newTodo);

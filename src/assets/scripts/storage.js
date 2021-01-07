@@ -23,11 +23,17 @@ const storage = (() => {
     localStorage.setItem('todolistarr', JSON.stringify(TODOLISTARR));
   }
 
+  const deleteTodo = (todo) => {
+      const index = TODOLISTARR.indexOf(todo);
+      TODOLISTARR.splice(index, 1);
+      localStorage.setItem('todolistarr', JSON.stringify(TODOLISTARR));
+  }
+
   const getTodoListArr = () => {
     TODOLISTARR = JSON.parse(localStorage.getItem('todolistarr'));
     if (TODOLISTARR) {
       TODOLISTARR = TODOLISTARR.map(todo => Todo(todo.title, todo.description,
-        todo.dueDate, todo.priority, todo.notes, todo.checklist, todo.project, updateTodo));
+        todo.dueDate, todo.priority, todo.notes, todo.checklist, todo.project, updateTodo, deleteTodo));
     } else {
       TODOLISTARR = [];
     }
@@ -55,7 +61,7 @@ const storage = (() => {
   }
 
   return {
-    getProjectArr, getTodoListArr, addProject, addTodo, savedProjects, updateTodo,
+    getProjectArr, getTodoListArr, addProject, addTodo, savedProjects, updateTodo, deleteTodo
   };
 })();
 

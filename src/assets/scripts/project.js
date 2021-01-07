@@ -38,7 +38,9 @@ const Project = (name, storage) => {
       clearProjectBoard(subBoard);
 
       const doneTodoContainer = generateContainer('div', 'done');
+      doneTodoContainer.classList.add('todos-container');
       const undoneTodoContainer = generateContainer('div', 'undone');
+      undoneTodoContainer.classList.add('todos-container');
 
       const doneTitle = generateContainer('h3', 'done-title', 'Done');
       doneTodoContainer.insertBefore(doneTitle, doneTodoContainer.firstChild);

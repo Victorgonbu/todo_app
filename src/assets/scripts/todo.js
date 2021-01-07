@@ -1,4 +1,4 @@
-const Todo = (title, description, dueDate, priority, notes, checklist, project, storage) => {
+const Todo = (title, description, dueDate, priority, notes, checklist, project, updateTodo, deleteTodo) => {
   function addPriorityClass(todo, todoCard) {
     switch (todo.priority) {
       case 'High':
@@ -30,6 +30,19 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
 
     todoCard = addPriorityClass(this, todoCard);
 
+    const removeButton = document.createElement('button');
+    removeButton.classList.add('remove-button');
+    removeButton.innerHTML = "<span>&times;</span>";
+
+    removeButton.addEventListener('click', () => {
+      const card = removeButton.closest('.todo-card');
+      removeCard(card);
+      deleteTodo(this);
+    });
+    
+    todoCard.appendChild(removeButton);
+
+       
 
     todoCard.classList.add('todo-card');
     const todoTags = this.generateTodoTags();
@@ -45,13 +58,17 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
   }
 
   function removeCard(card) {
-    const undoneTodos = document.querySelector('.undone');
-    undoneTodos.removeChild(card);
+    const todoContainers = document.querySelectorAll('.todos-container');
+    if (todoContainers[0].contains(card)) {
+      todoContainers[0].removeChild(card);
+    }else {
+      todoContainers[1].removeChild(card);
+    }
   }
 
   function checkboxEventListener(checkbox, todo) {
     checkbox.addEventListener('click', () => {
-      storage(todo);
+      updateTodo(todo);
       const card = checkbox.closest('.todo-card');
       removeCard(card);
       todo.displayNewTodo();
@@ -63,7 +80,8 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
     const elementTag = document.createElement('p');
     elementTag.classList.add(`${attribute}-field`);
     elementTag.classList.add('card-field');
-
+  
+   
     if (attribute === 'checklist') {
       if (todo.checklist === true) return elementTag;
       let checkbox = document.createElement('input');
@@ -82,6 +100,7 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
     tags.forEach(tag => {
       generatedtags.push(createTagsContainer(tag, this));
     });
+   
     return generatedtags;
   }
   return {

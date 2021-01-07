@@ -247,3 +247,13 @@ h3 {
   display: inline-block;
   width: 100%;
 }
+
+.remove-button {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background-color: white;
+  border: none;
+  font-size: 1.2em;
+  cursor: pointer;
+}
