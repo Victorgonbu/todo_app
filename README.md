@@ -11,6 +11,7 @@ This is a To Do List App using JavaScript and Webpack. With as goal learning how
 - Webpack
 - HTML
 - CSS
+- LocalStorage  
 
 ## Live Demo
 
@@ -30,6 +31,12 @@ To get a local copy up and running follow these simple example steps.
 - This to-do list app allows you to create new projects on the left side pane by clicking on the 'Add new project' button, all the projects added will be shown above the add project button.
 
 - The to-do form will be shown together with all related todos when a project is clicked, all the related added todos can be marked as 'done' by clicking on the rightmost checkbox in the todo card. All the 'done' to-dos are displayed with a lower opacity to highlight the undone to-dos.
+
+- Every added todo can be neither edited or deleted if needed by clicking the 'edit' and 'delete' button respectively.
+
+- All the todos added will be shown in the default project called 'All To-Do's' when the app is opened.
+
+- LocalStorage is used to save all the data.
 
 ## Author
 
