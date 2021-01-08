@@ -1,20 +1,17 @@
 const Project = (name, storage) => {
-
   const generateProjectTitle = (project) => {
     const header = document.createElement('h2');
     header.classList.add('project-title');
     header.textContent = project.textContent;
     return header;
-  }
+  };
 
   const generateProjectTodos = (project) => {
     let todos;
-   
-    if(project.textContent === "All To-Do's") {
-      
+
+    if (project.textContent === "All To-Do's") {
       todos = storage();
-    
-    }else {
+    } else {
       todos = storage().filter(todo => todo.project === project.textContent);
     }
 
@@ -23,20 +20,20 @@ const Project = (name, storage) => {
         todo.displayNewTodo();
       });
     }
-  }
+  };
 
   const clearProjectBoard = (todolist) => {
     while (todolist.firstChild) {
       todolist.removeChild(todolist.firstChild);
     }
-  }
+  };
 
   const generateContainer = (tag, tagClass, textContent = '') => {
     const container = document.createElement(tag);
     container.classList.add(tagClass);
     container.textContent = textContent;
     return container;
-  }
+  };
 
   const projectClickListener = (project) => {
     project.addEventListener('click', () => {
@@ -65,7 +62,7 @@ const Project = (name, storage) => {
       subBoard.insertBefore(projectTitle, subBoard.firstChild);
       generateProjectTodos(project);
     });
-  }
+  };
 
   const displayNewProject = () => {
     const project = document.createElement('li');
@@ -74,7 +71,7 @@ const Project = (name, storage) => {
     projectClickListener(project);
 
     return project;
-  }
+  };
 
   return { name, displayNewProject };
 };

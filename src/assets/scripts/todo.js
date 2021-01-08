@@ -1,4 +1,5 @@
-const Todo = (title, description, dueDate, priority, notes, checklist, project, updateTodo, deleteTodo) => {
+const Todo = (title, description, dueDate, priority, notes, checklist, project,
+  updateTodo, deleteTodo) => {
   function addPriorityClass(todo, todoCard) {
     switch (todo.priority) {
       case 'High':
@@ -26,13 +27,59 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
   }
 
   function selectCardFields(todoCard) {
-    let fields = ['title', 'description', 'dueDate', 'notes'];
+    const fields = ['title', 'description', 'dueDate', 'notes'];
     const cardFields = [];
     fields.forEach(field => {
-      let cardField = todoCard.querySelector(`.${field}-card`);
+      const cardField = todoCard.querySelector(`.${field}-card`);
       cardFields.push(cardField);
     });
     return cardFields;
+  }
+
+  function removeCard(card) {
+    const todoContainers = document.querySelectorAll('.todos-container');
+    if (todoContainers[0].contains(card)) {
+      todoContainers[0].removeChild(card);
+    } else {
+      todoContainers[1].removeChild(card);
+    }
+  }
+
+  function capitalizeString(string) {
+    return string.charAt(0).toUpperCase() + string.slice(1);
+  }
+
+
+  function checkboxEventListener(checkbox, todo) {
+    checkbox.addEventListener('click', () => {
+      todo.checklist = true;
+      updateTodo(todo);
+      const card = checkbox.closest('.todo-card');
+      removeCard(card);
+      todo.displayNewTodo();
+    });
+    return checkbox;
+  }
+
+
+  function createTagsContainer(attribute, todo) {
+    const elementTag = document.createElement('p');
+    elementTag.classList.add(`${attribute}-field`);
+    elementTag.classList.add('card-field');
+
+
+    if (attribute === 'checklist') {
+      if (todo.checklist === true) return elementTag;
+
+      let checkbox = document.createElement('input');
+      checkbox.classList.add('checkbox-card');
+      checkbox.setAttribute('type', 'checkbox');
+      checkbox = checkboxEventListener(checkbox, todo);
+      elementTag.appendChild(checkbox);
+    } else {
+      elementTag.innerHTML = `<span class="${attribute}-span">${capitalizeString(attribute)}: </span> <span class='${attribute}-${todo.priority} ${attribute}-card'> ${todo[attribute]}</span>`;
+    }
+    return elementTag;
   }
 
   function displayNewTodo() {
@@ -42,9 +89,9 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
 
     const removeButton = document.createElement('button');
     removeButton.classList.add('remove-button');
-    removeButton.innerHTML = "<span>&times;</span>";
+    removeButton.innerHTML = '<span>&times;</span>';
 
-    const editButton =  document.createElement('span');
+    const editButton = document.createElement('span');
     editButton.innerHTML = "<i class='fas fa-edit edit-button'></i>";
 
 
@@ -55,35 +102,32 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
     });
 
     todoCard.appendChild(removeButton);
-      
+
     editButton.addEventListener('click', () => {
-      
       const todoCard = editButton.closest('.todo-card');
 
-      let editTodo = []
+      let editTodo = [];
 
-      editTodo = selectCardFields(todoCard)
-      
-    
+      editTodo = selectCardFields(todoCard);
+
+
       editTodo.forEach(editField => {
         const fieldContent = editField.textContent;
         const classes = editField.classList;
-        
-      
+
+
         if (editField === editTodo[2]) {
           editField.innerHTML = `<input type='date' placeholder='${fieldContent}' class='edit-input ${classes[1]}-edit'>`;
-        }else {
+        } else {
           editField.innerHTML = `<input type='text' placeholder='${fieldContent}' class='edit-input ${classes[1]}-edit'>`;
         }
-       
-        
       });
 
       todoCard.removeChild(todoCard.lastChild);
 
       const saveButton = document.createElement('button');
       saveButton.classList.add('save-button');
-      saveButton.innerHTML = "<span>Save</span>";
+      saveButton.innerHTML = '<span>Save</span>';
 
       saveButton.addEventListener('click', () => {
         const editedTitle = todoCard.querySelector('.title-card-edit').value;
@@ -108,7 +152,6 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
         editTodo[1].textContent = this.description;
         editTodo[2].textContent = this.dueDate;
         editTodo[3].textContent = this.notes;
-
       });
 
       todoCard.appendChild(saveButton);
@@ -125,57 +168,13 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
     appendNewTodo(this, todoCard);
   }
 
-  function capitalizeString(string) {
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  function removeCard(card) {
-    const todoContainers = document.querySelectorAll('.todos-container');
-    if (todoContainers[0].contains(card)) {
-      todoContainers[0].removeChild(card);
-    }else {
-      todoContainers[1].removeChild(card);
-    }
-  }
-
-  function checkboxEventListener(checkbox, todo) {
-    checkbox.addEventListener('click', () => {
-      todo.checklist = true;
-      updateTodo(todo);
-      const card = checkbox.closest('.todo-card');
-      removeCard(card);
-      todo.displayNewTodo();
-    });
-    return checkbox;
-  }
-
-  function createTagsContainer(attribute, todo) {
-    const elementTag = document.createElement('p');
-    elementTag.classList.add(`${attribute}-field`);
-    elementTag.classList.add('card-field');
-  
-   
-    if (attribute === 'checklist') {
-      if (todo.checklist === true) return elementTag;
-  
-      let checkbox = document.createElement('input');
-      checkbox.classList.add('checkbox-card');
-      checkbox.setAttribute('type', 'checkbox');
-      checkbox = checkboxEventListener(checkbox, todo);
-      elementTag.appendChild(checkbox);
-      
-    } else {
-      elementTag.innerHTML = `<span class="${attribute}-span">${capitalizeString(attribute)}: </span> <span class='${attribute}-${todo.priority} ${attribute}-card'> ${todo[attribute]}</span>`;
-    }
-    return elementTag;
-  }
   function generateTodoTags() {
     const tags = ['title', 'description', 'dueDate', 'priority', 'notes', 'checklist'];
     const generatedtags = [];
     tags.forEach(tag => {
       generatedtags.push(createTagsContainer(tag, this));
     });
-   
+
     return generatedtags;
   }
   return {
@@ -186,7 +185,7 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
     notes,
     checklist,
     project,
-    generateTodoTags, 
+    generateTodoTags,
     displayNewTodo,
   };
 };
