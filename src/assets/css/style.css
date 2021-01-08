@@ -87,20 +87,19 @@ h3 {
 
 .display-board {
   width: 100%;
-  transform: scaleY(0);
+  transform: scaleX(0);
   background-color: white;
   border: 1px solid white;
-  transition: 200ms ease-out;
   display: flex;
   flex-direction: column;
   align-items: center;
   padding-top: 1em;
-  transform-origin: top;
 }
 
 .active-board {
-  transform: scaleY(1);
-  transition: 300ms ease-in;
+  border: none;
+  transform: scaleX(1);
+  transition: 400ms ease-in;
 }
 
 .wrapper-field {

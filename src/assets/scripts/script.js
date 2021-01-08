@@ -52,5 +52,5 @@ storage.savedProjects();
 
 const defaultPage = Project("All To-Do's", storage.getTodoListArr);
 const defaultContainer = defaultPage.displayNewProject();
-defaultContainer.click();
+setTimeout(defaultContainer.click(),500);
 PROJECTLIST.insertBefore(defaultContainer, PROJECTLIST.firstChild);
