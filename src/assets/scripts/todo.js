@@ -25,6 +25,16 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
     }
   }
 
+  function selectCardFields(todoCard) {
+    let fields = ['title', 'description', 'dueDate', 'notes'];
+    const cardFields = [];
+    fields.forEach(field => {
+      let cardField = todoCard.querySelector(`.${field}-card`);
+      cardFields.push(cardField);
+    });
+    return cardFields;
+  }
+
   function displayNewTodo() {
     let todoCard = document.createElement('div');
 
@@ -34,35 +44,33 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
     removeButton.classList.add('remove-button');
     removeButton.innerHTML = "<span>&times;</span>";
 
+    const editButton =  document.createElement('span');
+    editButton.innerHTML = "<i class='fas fa-edit edit-button'></i>";
+
+
     removeButton.addEventListener('click', () => {
       const card = removeButton.closest('.todo-card');
       removeCard(card);
       deleteTodo(this);
-
     });
-    
+
     todoCard.appendChild(removeButton);
-
-    const editButton =  document.createElement('span');
-    editButton.innerHTML = "<i class='fas fa-edit edit-button'></i>";
+      
     editButton.addEventListener('click', () => {
+      
       const todoCard = editButton.closest('.todo-card');
-      let editTodo = []
-      const editTitle = todoCard.querySelector('.title-card');
-      editTodo.push(editTitle);
-      const editDescription = todoCard.querySelector('.description-card');
-      editTodo.push(editDescription);
-      const editDuedate = todoCard.querySelector('.dueDate-card');
-      editTodo.push(editDuedate);
-      const editNotes = todoCard.querySelector('.notes-card');
-      editTodo.push(editNotes);
 
+      let editTodo = []
+
+      editTodo = selectCardFields(todoCard)
+      
+    
       editTodo.forEach(editField => {
         const fieldContent = editField.textContent;
         const classes = editField.classList;
         
       
-        if (editField === editDuedate) {
+        if (editField === editTodo[2]) {
           editField.innerHTML = `<input type='date' placeholder='${fieldContent}' class='edit-input ${classes[1]}-edit'>`;
         }else {
           editField.innerHTML = `<input type='text' placeholder='${fieldContent}' class='edit-input ${classes[1]}-edit'>`;
@@ -96,20 +104,16 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
 
         todoCard.appendChild(checkbox);
 
-        editTitle.textContent = this.title;
-        editDescription.textContent = this.description;
-        editDuedate.textContent = this.dueDate;
-        editNotes.textContent = this.notes;
+        editTodo[0].textContent = this.title;
+        editTodo[1].textContent = this.description;
+        editTodo[2].textContent = this.dueDate;
+        editTodo[3].textContent = this.notes;
 
       });
 
       todoCard.appendChild(saveButton);
-
-
-
-
     });
-    
+
     todoCard.appendChild(editButton);
 
     todoCard.classList.add('todo-card');
