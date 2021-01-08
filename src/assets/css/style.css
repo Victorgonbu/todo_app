@@ -87,7 +87,7 @@ h3 {
 
 .display-board {
   width: 100%;
-  transform: scaleX(0);
+  transform: scaleY(0);
   background-color: white;
   border: 1px solid white;
   transition: 200ms ease-out;
@@ -95,11 +95,12 @@ h3 {
   flex-direction: column;
   align-items: center;
   padding-top: 1em;
+  transform-origin: top;
 }
 
 .active-board {
-  transform: scaleX(1);
-  transition: 200ms ease-out;
+  transform: scaleY(1);
+  transition: 300ms ease-in;
 }
 
 .wrapper-field {

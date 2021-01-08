@@ -186,7 +186,7 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project, 
     notes,
     checklist,
     project,
-    generateTodoTags,
+    generateTodoTags, 
     displayNewTodo,
   };
 };

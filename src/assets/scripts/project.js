@@ -8,7 +8,15 @@ const Project = (name, storage) => {
   }
 
   const generateProjectTodos = (project) => {
-    const todos = storage().filter(todo => todo.project === project.textContent);
+    let todos;
+   
+    if(project.textContent === "All To-Do's") {
+      
+      todos = storage();
+    
+    }else {
+      todos = storage().filter(todo => todo.project === project.textContent);
+    }
 
     if (todos) {
       todos.forEach(todo => {

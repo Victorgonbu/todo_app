@@ -1,6 +1,9 @@
+import '../css/reset.css';
+import '../css/style.css';
 import storage from './storage';
 import Todo from './todo';
 import Project from './project';
+
 
 const ADDNEWPROJECTBTN = document.querySelector('.new-project');
 const ADDNEWPROJECTINPUT = document.querySelector('.new-project-input');
@@ -46,3 +49,8 @@ ADDTODOBTNS.forEach(btn => {
 });
 
 storage.savedProjects();
+
+const defaultPage = Project("All To-Do's", storage.getTodoListArr);
+const defaultContainer = defaultPage.displayNewProject();
+defaultContainer.click();
+PROJECTLIST.insertBefore(defaultContainer, PROJECTLIST.firstChild);
