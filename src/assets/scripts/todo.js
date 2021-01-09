@@ -117,9 +117,9 @@ const Todo = (title, description, dueDate, priority, notes, checklist, project,
 
 
         if (editField === editTodo[2]) {
-          editField.innerHTML = `<input type='date' placeholder='${fieldContent}' class='edit-input ${classes[1]}-edit'>`;
+          editField.innerHTML = `<input type='date' value='${fieldContent}' class='edit-input ${classes[1]}-edit'>`;
         } else {
-          editField.innerHTML = `<input type='text' placeholder='${fieldContent}' class='edit-input ${classes[1]}-edit'>`;
+          editField.innerHTML = `<input type='text' value='${fieldContent}' class='edit-input ${classes[1]}-edit'>`;
         }
       });
 
