@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Todo List</title>
+
+    <script src="https://kit.fontawesome.com/ea4197418c.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <header>
+
+    </header>
+    <main class="main-container">
+        <div class="projects">
+            <h1 class="projects-title">Projects</h1>
+            <ul class="list">
+                
+            </ul>
+            <form class="input-field">
+            <input class="new-project-input" type="text">
+            <submit type="button" class="new-project">New Project</button>
+            </form>
+            
+        </div>
+        <div class="display-board">
+            <form action="" class="add-todo-form">
+                <div class="wrapper-field">
+                    <div class="field">
+        
+                        <input type="text" class="input text-input" id="title" placeholder="Title">
+                    </div>
+                    
+                    <div class="field">
+                        <input type="checkbox" class="input" id="check">
+                        <label for="checkbox">Done</label>
+                       
+                    </div>
+                </div>
+               
+                <div class="field">
+                   
+                    <textarea name="description" id="description" placeholder="Description" class="input area-input"></textarea>
+                </div>
+                <div class="wrapper-field">
+                    <div class="field">
+                        <label for="dueDate">Due date</label>
+                        <input type="date" class="input" id="due-date">
+                    </div>
+                    <div class="field">
+                        <label for="priority">Priority</label>
+                        <select name="priority" id="priority" class="input">
+                            <option value="High">High</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Low">Low</option>
+                        </select>
+                    </div>
+                </div>
+                
+             
+                    <div class="field">
+                        <label for="notes" class="notes-label">Notes</label>
+                        <input type="text" class="input notes-input" id="notes">
+                    </div>
+    
+                    <div class="submit-field">
+                        <input type="button" value="Create" class="submit-todo">
+                    </div>
+               
+                
+            </form>
+            <div class="board">
+                <div class="todo-lists">
+                   
+                </div>
+            </div>
+            
+        </div>
+    </main>
+    <footer>
+
+    </footer>
+    <script src="../dist/index.bundle.js"></script>
+</body>
+</html>
