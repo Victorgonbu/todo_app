@@ -77,3 +77,5 @@ const Project = (name, storage) => {
 };
 
 export default Project;
+
+module.exports = Project;
