@@ -1,8 +1,10 @@
 import '../css/reset.css';
 import '../css/style.css';
+import PubSub from 'pubsub-js';
 import storage from './storage';
 import Todo from './todo';
 import Project from './project';
+import ProjectUI from './projectUI';
 
 
 const ADDNEWPROJECTBTN = document.querySelector('.new-project');
@@ -21,7 +23,7 @@ ADDNEWPROJECTBTN.addEventListener('click', () => {
   }
   if (ADDNEWPROJECTINPUT.value) {
     const newProject = Project(ADDNEWPROJECTINPUT.value, storage.getTodoListArr);
-    const project = newProject.displayNewProject();
+    const project = newProject.newProject();
     storage.addProject(newProject);
     PROJECTLIST.appendChild(project);
     const form = PROJECTSCONTAINER.querySelector('form');
@@ -51,6 +53,5 @@ ADDTODOBTNS.forEach(btn => {
 storage.savedProjects();
 
 const defaultPage = Project("All To-Do's", storage.getTodoListArr);
-const defaultContainer = defaultPage.displayNewProject();
-setTimeout(defaultContainer.click(), 500);
-PROJECTLIST.insertBefore(defaultContainer, PROJECTLIST.firstChild);
+const defaultContainer = defaultPage.newProject();
+
