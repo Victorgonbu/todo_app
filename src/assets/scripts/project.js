@@ -1,3 +1,5 @@
+import ProjectUI from './projectUI';
+
 const Project = (name, todoListArr) => {
 
   const filterTodoList = (projectName) => {
@@ -6,26 +8,30 @@ const Project = (name, todoListArr) => {
 
   const allOrSpecific = (projectName) => {
 
-    let list = ((projectName === "All To-Do's") ? todoListArr() : filterTodoList(projectName));
-    return list;
+    if(projectName === "All To-Do's") {
+       return todoListArr() 
+    }else { 
+      return  filterTodoList(projectName);
+    }
+    
   }
  
 
   const newProject = () => {
     const projectInfo = 'Project-info';
-    let project;
+
     PubSub.publish(projectInfo, {
       name: name,
-      todos: allOrSpecific(name)
+      todos: allOrSpecific
     });
 
   };
 
 
-  return { name, newProject, allOrSpecific };
+  return {name, newProject, allOrSpecific };
 };
 
-
+ProjectUI.setUp();
 
 export default Project;
  

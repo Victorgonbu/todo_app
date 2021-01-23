@@ -51,11 +51,10 @@ const storage = (() => {
   };
 
   const savedProjects = () => {
-    const projectList = document.querySelector('.list');
-
+ 
     if (getProjectArr().length > 0) {
       getProjectArr().forEach(project => {
-        projectList.appendChild(project.displayNewProject());
+        project.newProject();
       });
     }
   };

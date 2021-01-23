@@ -4,14 +4,14 @@ import PubSub from 'pubsub-js';
 import storage from './storage';
 import Todo from './todo';
 import Project from './project';
-import ProjectUI from './projectUI';
+
 
 
 const ADDNEWPROJECTBTN = document.querySelector('.new-project');
 const ADDNEWPROJECTINPUT = document.querySelector('.new-project-input');
-const PROJECTSCONTAINER = document.querySelector('.projects');
+
 const ADDTODOBTNS = document.querySelectorAll('.submit-todo');
-const PROJECTLIST = document.querySelector('.list');
+
 
 ADDNEWPROJECTBTN.addEventListener('click', () => {
   ADDNEWPROJECTBTN.classList.toggle('active-btn');
@@ -23,11 +23,10 @@ ADDNEWPROJECTBTN.addEventListener('click', () => {
   }
   if (ADDNEWPROJECTINPUT.value) {
     const newProject = Project(ADDNEWPROJECTINPUT.value, storage.getTodoListArr);
-    const project = newProject.newProject();
     storage.addProject(newProject);
-    PROJECTLIST.appendChild(project);
-    const form = PROJECTSCONTAINER.querySelector('form');
-    form.reset();
+    newProject.newProject();
+    
+    
   }
 });
 
@@ -50,8 +49,11 @@ ADDTODOBTNS.forEach(btn => {
   });
 });
 
-storage.savedProjects();
+
 
 const defaultPage = Project("All To-Do's", storage.getTodoListArr);
-const defaultContainer = defaultPage.newProject();
+defaultPage.newProject();
 
+storage.savedProjects();
+//setTimeout(defaultContainer.click(), 500);
+//PROJECTLIST.insertBefore(defaultContainer, PROJECTLIST.firstChild);

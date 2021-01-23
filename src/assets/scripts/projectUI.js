@@ -1,15 +1,14 @@
+import storage from '../scripts/storage';
 const ProjectUI = (() => {
 
-    const generateProjectTitle = (projectName) => {
-        const header = document.createElement('h2');
-        header.classList.add('project-title');
-        header.textContent = projectName;
-        return header;
+    const setProjectTitle = (projectName) => {
+        const projecth2 = document.querySelector('.project-title');
+        projecth2.textContent = projectName;
       };
 
-    const clearProjectBoard = (todolist) => {
-        while (todolist.firstChild) {
-          todolist.removeChild(todolist.firstChild);
+    const clearBoard = (todolist) => {
+        while (todolist.childElementCount > 1) {
+          todolist.removeChild(todolist.lastChild);
         }
       };
     const generateContainer = (tag, tagClass, textContent = '') => {
@@ -26,20 +25,26 @@ const ProjectUI = (() => {
         }
       };
 
-      const projectClickListener = (project, projectTodos) => {
-          console.log(project);
+      const projectClickListener = (project, projectTodos, undoneContainer, doneContainer, subBoard) => {
         project.addEventListener('click', () => {
-            const projectTitle = generateProjectTitle(project.textContent);
-            subBoard.insertBefore(projectTitle, subBoard.firstChild);
-            displayProjectTodos(projectTodos);
+            
+            clearBoard(undoneContainer);
+            clearBoard(doneContainer);
+            setProjectTitle(project.textContent);
+            displayProjectTodos(projectTodos(project.textContent));
         });
       };
+
+      
     
-    function draw() {
-        const projectTag = document.createElement('li');
+    function setUp() {
+        const PROJECTSCONTAINER = document.querySelector('.projects');
+        const form = PROJECTSCONTAINER.querySelector('form');
+        const PROJECTLIST = document.querySelector('.list');
+        
         const board = document.querySelector('.display-board');
         const subBoard = document.querySelector('.todo-lists');
-        clearProjectBoard(subBoard);
+       
 
         const doneTodoContainer = generateContainer('div', ['done', 'todos-container']);
       
@@ -56,23 +61,20 @@ const ProjectUI = (() => {
         board.classList.add('active-board');
 
 
-        PubSub.subscribe('projectName', (tag, project) => {
+        PubSub.subscribe('Project-info', (tag, project) => {
+            const projectTag = document.createElement('li');
             projectTag.classList.add('project-item');
             projectTag.textContent = project.name;
-            projectClickListener(projectTag, project.todos);
-    
+            projectClickListener(projectTag, project.todos, undoneTodoContainer, doneTodoContainer, subBoard); 
+            PROJECTLIST.appendChild(projectTag);
+            form.reset();
         });
-
-     
-
-      
         
-
     }
 
     return {
-        draw
+        setUp
     }
 })();
 
-ProjectUI.draw();
+export default ProjectUI;
