@@ -1,17 +1,19 @@
 import '../css/reset.css';
 import '../css/style.css';
+
 import storage from './storage';
 import Todo from './todo';
 import Project from './project';
 import ProjectUI from './projectUI';
 import TodoUI from './todoUI';
 
-
+ProjectUI.setUp();
+TodoUI.setUp();
 
 const ADDNEWPROJECTBTN = document.querySelector('.new-project');
 const ADDNEWPROJECTINPUT = document.querySelector('.new-project-input');
 const ADDTODOBTNS = document.querySelectorAll('.submit-todo');
-const LISTPANE = document.querySelector('.list');
+
 
 ADDNEWPROJECTBTN.addEventListener('click', () => {
   ADDNEWPROJECTBTN.classList.toggle('active-btn');
@@ -25,8 +27,6 @@ ADDNEWPROJECTBTN.addEventListener('click', () => {
     const newProject = Project(ADDNEWPROJECTINPUT.value, storage.getTodoListArr);
     storage.addProject(newProject);
     newProject.newProject();
-    
-    
   }
 });
 
@@ -50,12 +50,11 @@ ADDTODOBTNS.forEach(btn => {
 });
 
 
-
 const defaultPage = Project("All To-Do's", storage.getTodoListArr);
 defaultPage.newProject();
 
 storage.savedProjects();
 
 
-//setTimeout(defaultContainer.click(), 500);
-//PROJECTLIST.insertBefore(defaultContainer, PROJECTLIST.firstChild);
+// setTimeout(defaultContainer.click(), 500);
+// PROJECTLIST.insertBefore(defaultContainer, PROJECTLIST.firstChild);

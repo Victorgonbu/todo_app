@@ -50,7 +50,6 @@ const storage = (() => {
   };
 
   const savedProjects = () => {
- 
     if (getProjectArr().length > 0) {
       getProjectArr().forEach(project => {
         project.newProject();
