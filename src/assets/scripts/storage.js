@@ -32,8 +32,7 @@ const storage = (() => {
     TODOLISTARR = JSON.parse(localStorage.getItem('todolistarr'));
     if (TODOLISTARR) {
       TODOLISTARR = TODOLISTARR.map(todo => Todo(todo.title, todo.description,
-        todo.dueDate, todo.priority, todo.notes, todo.checklist, todo.project,
-        updateTodo, deleteTodo));
+        todo.dueDate, todo.priority, todo.notes, todo.checklist, todo.project));
     } else {
       TODOLISTARR = [];
     }

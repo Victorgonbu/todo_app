@@ -1,15 +1,15 @@
 import '../css/reset.css';
 import '../css/style.css';
-import PubSub from 'pubsub-js';
 import storage from './storage';
 import Todo from './todo';
 import Project from './project';
+import ProjectUI from './projectUI';
+import TodoUI from './todoUI';
 
 
 
 const ADDNEWPROJECTBTN = document.querySelector('.new-project');
 const ADDNEWPROJECTINPUT = document.querySelector('.new-project-input');
-
 const ADDTODOBTNS = document.querySelectorAll('.submit-todo');
 
 
@@ -41,7 +41,7 @@ ADDTODOBTNS.forEach(btn => {
     const project = document.querySelector('.project-title').textContent;
     const form = document.querySelector('.add-todo-form');
     const newTodo = Todo(title, description, dueDate, priority, notes,
-      checkbox, project, storage.updateTodo, storage.deleteTodo);
+      checkbox, project);
 
     newTodo.displayNewTodo();
     storage.addTodo(newTodo);

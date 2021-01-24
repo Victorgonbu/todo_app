@@ -1,4 +1,4 @@
-import storage from '../scripts/storage';
+
 const ProjectUI = (() => {
 
     const setProjectTitle = (projectName) => {
@@ -39,7 +39,7 @@ const ProjectUI = (() => {
     
     function setUp() {
         const PROJECTSCONTAINER = document.querySelector('.projects');
-        const form = PROJECTSCONTAINER.querySelector('form');
+        const form = document.querySelector('.project-form');
         const PROJECTLIST = document.querySelector('.list');
         
         const board = document.querySelector('.display-board');
@@ -77,4 +77,4 @@ const ProjectUI = (() => {
     }
 })();
 
-export default ProjectUI;
+ProjectUI.setUp();

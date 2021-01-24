@@ -1,4 +1,5 @@
-import ProjectUI from './projectUI';
+//import ProjectUI from './projectUI';
+import PubSub from 'pubsub-js';
 
 const Project = (name, todoListArr) => {
 
@@ -31,7 +32,7 @@ const Project = (name, todoListArr) => {
   return {name, newProject, allOrSpecific };
 };
 
-ProjectUI.setUp();
+
 
 export default Project;
  
