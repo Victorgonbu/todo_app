@@ -11,7 +11,7 @@ import TodoUI from './todoUI';
 const ADDNEWPROJECTBTN = document.querySelector('.new-project');
 const ADDNEWPROJECTINPUT = document.querySelector('.new-project-input');
 const ADDTODOBTNS = document.querySelectorAll('.submit-todo');
-
+const LISTPANE = document.querySelector('.list');
 
 ADDNEWPROJECTBTN.addEventListener('click', () => {
   ADDNEWPROJECTBTN.classList.toggle('active-btn');
@@ -55,5 +55,7 @@ const defaultPage = Project("All To-Do's", storage.getTodoListArr);
 defaultPage.newProject();
 
 storage.savedProjects();
+
+
 //setTimeout(defaultContainer.click(), 500);
 //PROJECTLIST.insertBefore(defaultContainer, PROJECTLIST.firstChild);

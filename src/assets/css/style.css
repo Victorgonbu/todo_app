@@ -14,6 +14,10 @@ h3 {
   padding: 1em 0;
 }
 
+span {
+  text-transform: capitalize;
+}
+
 .main-container {
   background-color: var(--main-orange);
   min-height: 100%;
@@ -207,19 +211,19 @@ h3 {
   justify-content: center;
 }
 
-.priority-High {
+.priority-high {
   background-color: rgb(235, 0, 0, 0.6);
   padding: 0 7px;
   border-radius: 5px;
 }
 
-.priority-Medium {
+.priority-medium {
   background-color: rgb(243, 148, 76, 1);
   padding: 0 7px;
   border-radius: 5px;
 }
 
-.priority-Low {
+.priority-low {
   background-color: rgb(145, 238, 143, 0.6);
   padding: 0 7px;
   border-radius: 5px;
