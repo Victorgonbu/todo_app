@@ -69,7 +69,7 @@ class Todo {
   displayNewTodo() {
     PubSub.publish('todo-info', {
       todo: this,
-      status: this.getTodoContainerName,
+      status: this.getTodoContainerName(),
     });
   }
 }

@@ -49,14 +49,14 @@ const TodoUI = (() => {
 
   function checkboxListener(checkbox, todo, todoStatus) {
     checkbox.addEventListener('click', () => {
-      const updatedtodo = { ...todo };
-      updatedtodo.checklist = true;
+      const oldTodo = { ...todo };
+      todo.checklist = true;
 
-      Todo.updateTodo(todo, updatedtodo);
+      Todo.updateTodo(oldTodo, todo);
       // updateTodo(todo); possible error
       const card = checkbox.closest('.todo-card');
       removeCard(card, todoStatus);
-      todo.checklist = true;
+
       todo.displayNewTodo();
     });
     return checkbox;
@@ -92,13 +92,14 @@ const TodoUI = (() => {
       const editedDescription = todoCard.querySelector('.description-card-edit').value;
       const editedDuedate = todoCard.querySelector('.dueDate-card-edit').value;
       const editedNotes = todoCard.querySelector('.notes-card-edit').value;
-      const updatedTodo = { ...todo };
-      updatedTodo.title = editedTitle;
-      updatedTodo.description = editedDescription;
-      updatedTodo.dueDate = editedDuedate;
-      updatedTodo.notes = editedNotes;
+      const oldTodo = { ...todo };
 
-      Todo.updateTodo(todo, updatedTodo);
+      todo.title = editedTitle;
+      todo.description = editedDescription;
+      todo.dueDate = editedDuedate;
+      todo.notes = editedNotes;
+
+      Todo.updateTodo(oldTodo, todo);
       // updateTodo(todo); possible error
 
       todoCard.removeChild(todoCard.lastChild);
@@ -108,10 +109,10 @@ const TodoUI = (() => {
 
       todoCard.appendChild(checkbox);
 
-      editFields[0].textContent = updatedTodo.title;
-      editFields[1].textContent = updatedTodo.description;
-      editFields[2].textContent = updatedTodo.dueDate;
-      editFields[3].textContent = updatedTodo.notes;
+      editFields[0].textContent = todo.title;
+      editFields[1].textContent = todo.description;
+      editFields[2].textContent = todo.dueDate;
+      editFields[3].textContent = todo.notes;
     });
   }
 

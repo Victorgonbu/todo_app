@@ -5,7 +5,13 @@ import Todo from './todo';
 class Project {
   constructor(name) {
     this.name = name;
-   
+  }
+
+  static allOrSpecific(projectName) {
+    if (projectName === "All To-Do's") {
+      return Todo.getTodoListArr();
+    }
+    return Todo.getTodoListArr().filter(todo => todo.project === projectName);
   }
 
   static projectArr() {
@@ -40,21 +46,12 @@ class Project {
     localStorage.setItem('projectarr', JSON.stringify(projectArray));
   }
 
-  allOrSpecific(projectName) {
-    if (projectName === "All To-Do's") {
-      this.todos = Todo.getTodoListArr();
-    }
-    this.todos = Todo.getTodoListArr().filter(todo => todo.project === projectName);
-    return this.todos;
-  }
-
 
   newProject() {
     const projectInfo = 'Project-info';
 
     PubSub.publish(projectInfo, {
       name: this.name,
-      todos: this.allOrSpecific,
     });
   }
 }

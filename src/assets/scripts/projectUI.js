@@ -1,4 +1,5 @@
 import PubSub from 'pubsub-js';
+import Project from './project';
 
 const ProjectUI = (() => {
   const setProjectTitle = (projectName) => {
@@ -24,12 +25,12 @@ const ProjectUI = (() => {
     }
   };
 
-  const projectClickListener = (project, projectTodos, undoneContainer, doneContainer) => {
+  const projectClickListener = (project, undoneContainer, doneContainer) => {
     project.addEventListener('click', () => {
       clearBoard(undoneContainer);
       clearBoard(doneContainer);
       setProjectTitle(project.textContent);
-      displayProjectTodos(projectTodos(project.textContent));
+      displayProjectTodos(Project.allOrSpecific(project.textContent));
     });
   };
 
@@ -61,7 +62,7 @@ const ProjectUI = (() => {
       const projectTag = document.createElement('li');
       projectTag.classList.add('project-item');
       projectTag.textContent = project.name;
-      projectClickListener(projectTag, project.todos, undoneTodoContainer, doneTodoContainer);
+      projectClickListener(projectTag, undoneTodoContainer, doneTodoContainer);
       PROJECTLIST.appendChild(projectTag);
       form.reset();
     });
