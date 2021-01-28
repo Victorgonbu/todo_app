@@ -41,18 +41,13 @@ class Project {
     localStorage.setItem('projectarr', JSON.stringify(projectArray));
   }
 
-
-  filterList(projectName) {
-    return Todo.getTodoListArr().filter(todo => todo.project === projectName);
-  }
-
   allOrSpecific(projectName) {
-    
+
     if (projectName === "All To-Do's") {
       return Todo.getTodoListArr();
       
     }
-    return this.filterList(projectName) ;
+    return Todo.getTodoListArr().filter(todo => todo.project === projectName);
   }
 
 
@@ -61,7 +56,7 @@ class Project {
 
     PubSub.publish(projectInfo, {
       name: this.name,
-      todos: this.allOrSpecific(this.name),
+      todos: this.allOrSpecific,
     });
 
    

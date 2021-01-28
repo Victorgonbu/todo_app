@@ -52,10 +52,11 @@ const TodoUI = (() => {
       let updatedtodo = {... todo};
       updatedtodo.checklist = true;
       
-      Todo.updateTodo(todo);
+      Todo.updateTodo(todo, updatedtodo);
       // updateTodo(todo); possible error
       const card = checkbox.closest('.todo-card');
       removeCard(card, todoStatus);
+      todo.checklist = true;
       todo.displayNewTodo();
     });
     return checkbox;
@@ -74,7 +75,6 @@ const TodoUI = (() => {
     const elementTag = document.createElement('p');
     elementTag.classList.add(`${attribute}-field`);
     elementTag.classList.add('card-field');
-
 
     if (attribute === 'checklist') {
       if (todo.checklist === true) return elementTag;
@@ -98,7 +98,7 @@ const TodoUI = (() => {
       updatedTodo.dueDate = editedDuedate;
       updatedTodo.notes = editedNotes;
 
-      Todo.updateTodo(todo);
+      Todo.updateTodo(todo, updatedTodo);
       // updateTodo(todo); possible error
 
       todoCard.removeChild(todoCard.lastChild);
@@ -108,10 +108,10 @@ const TodoUI = (() => {
 
       todoCard.appendChild(checkbox);
 
-      editFields[0].textContent = todo.title;
-      editFields[1].textContent = todo.description;
-      editFields[2].textContent = todo.dueDate;
-      editFields[3].textContent = todo.notes;
+      editFields[0].textContent = updatedTodo.title;
+      editFields[1].textContent = updatedTodo.description;
+      editFields[2].textContent = updatedTodo.dueDate;
+      editFields[3].textContent = updatedTodo.notes;
     });
   }
 

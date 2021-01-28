@@ -19,7 +19,6 @@ const ProjectUI = (() => {
   };
 
   const displayProjectTodos = (todos) => {
-    console.log(todos);
     
     if (todos) {
       todos.forEach(todo => { todo.displayNewTodo() });
@@ -31,7 +30,7 @@ const ProjectUI = (() => {
       clearBoard(undoneContainer);
       clearBoard(doneContainer);
       setProjectTitle(project.textContent);
-      displayProjectTodos(projectTodos);
+      displayProjectTodos(projectTodos(project.textContent));
     });
   };
 

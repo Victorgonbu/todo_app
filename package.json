@@ -22,6 +22,7 @@
   "devDependencies": {
     "@babel/preset-env": "^7.12.11",
     "css-loader": "^5.0.1",
+    "dotenv-webpack": "^6.0.0",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
@@ -39,8 +40,10 @@
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
       "\\.(css|less)$": "<rootDir>/__mocks__/styleMock.js"
-    }, 
-    "setupFiles": ["jest-localstorage-mock"]
+    },
+    "setupFiles": [
+      "jest-localstorage-mock"
+    ]
   },
   "dependencies": {
     "pubsub-js": "^1.9.2"

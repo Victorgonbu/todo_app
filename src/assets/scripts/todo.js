@@ -7,7 +7,7 @@ class Todo  {
   };
 
   constructor(title, description, dueDate, priority, notes, checklist, project){
-    this.ID = this.generateID();
+     
     this.title = title;
     this.description = description;
     this.dueDate =  dueDate;
@@ -15,7 +15,6 @@ class Todo  {
     this.notes = notes;
     this.checklist = checklist;
     this.project = project;
-    this.todoID;
   }
 
   saveTodo() {
@@ -38,27 +37,29 @@ class Todo  {
     return todoList;
   };
 
-  static updateTodo(todo) {
-    const todoList  = Todo.getTodoListArr();
-    const index = todoList.map(_todo => _todo.ID).indexOf(todo.ID);
-    todoList[index] = todo;
+  static getIndex(todoList, todo){
+      for(let i = 0; i < todoList.length; i+=1) {
+        if(JSON.stringify(todoList[i]) === JSON.stringify(todo)){
+       
+          return i;
+        }
+      };
+  }
+
+  static updateTodo(todo, updatedTodo) {
+    const todoList  = this.todoListArr();
+    const index = this.getIndex(todoList, todo); 
+    todoList[index] = updatedTodo;
     localStorage.setItem('todolistarr', JSON.stringify(todoList));
   };
 
   static deleteTodo(todo) {
-    const todoList = Todo.getTodoListArr();
-    const index = todoList.map(_todo => _todo.ID).indexOf(todo.ID);
+    const todoList = Todo.todoListArr();
+    const index = this.getIndex(todoList, todo);
+    
     todoList.splice(index, 1);
     localStorage.setItem('todolistarr', JSON.stringify(todoList));
   };
-
-  generateID() {
-    if(this.todoID >= 0){
-      this.todoID += 1;
-    }else {
-      this.todoID = 0;
-    }
-  }
 
   getTodoContainerClass(todoStatus) {
     if (todoStatus === true) {
