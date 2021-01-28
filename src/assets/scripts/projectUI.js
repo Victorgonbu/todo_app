@@ -1,5 +1,5 @@
 import PubSub from 'pubsub-js';
-import Todo from './todo';
+
 const ProjectUI = (() => {
   const setProjectTitle = (projectName) => {
     const projecth2 = document.querySelector('.project-title');
@@ -19,9 +19,8 @@ const ProjectUI = (() => {
   };
 
   const displayProjectTodos = (todos) => {
-    
     if (todos) {
-      todos.forEach(todo => { todo.displayNewTodo() });
+      todos.forEach(todo => { todo.displayNewTodo(); });
     }
   };
 

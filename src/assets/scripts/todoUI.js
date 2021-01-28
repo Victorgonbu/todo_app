@@ -49,9 +49,9 @@ const TodoUI = (() => {
 
   function checkboxListener(checkbox, todo, todoStatus) {
     checkbox.addEventListener('click', () => {
-      let updatedtodo = {... todo};
+      const updatedtodo = { ...todo };
       updatedtodo.checklist = true;
-      
+
       Todo.updateTodo(todo, updatedtodo);
       // updateTodo(todo); possible error
       const card = checkbox.closest('.todo-card');
@@ -92,7 +92,7 @@ const TodoUI = (() => {
       const editedDescription = todoCard.querySelector('.description-card-edit').value;
       const editedDuedate = todoCard.querySelector('.dueDate-card-edit').value;
       const editedNotes = todoCard.querySelector('.notes-card-edit').value;
-      let updatedTodo = {... todo};
+      const updatedTodo = { ...todo };
       updatedTodo.title = editedTitle;
       updatedTodo.description = editedDescription;
       updatedTodo.dueDate = editedDuedate;

@@ -1,16 +1,14 @@
 import PubSub from 'pubsub-js';
-class Todo  {
-  
 
+class Todo {
   static todoListArr() {
-    return JSON.parse(localStorage.getItem('todolistarr')) || []
-  };
+    return JSON.parse(localStorage.getItem('todolistarr')) || [];
+  }
 
-  constructor(title, description, dueDate, priority, notes, checklist, project){
-     
+  constructor(title, description, dueDate, priority, notes, checklist, project) {
     this.title = title;
     this.description = description;
-    this.dueDate =  dueDate;
+    this.dueDate = dueDate;
     this.priority = priority;
     this.notes = notes;
     this.checklist = checklist;
@@ -18,10 +16,10 @@ class Todo  {
   }
 
   saveTodo() {
-    let todoList = Todo.getTodoListArr();
+    const todoList = Todo.getTodoListArr();
     todoList.push(this);
     localStorage.setItem('todolistarr', JSON.stringify(todoList));
-  };
+  }
 
   static toTodo(todoList) {
     if (todoList.length > 0) {
@@ -29,53 +27,52 @@ class Todo  {
         todo.dueDate, todo.priority, todo.notes, todo.checklist, todo.project));
     }
     return todoList;
-  };
+  }
 
   static getTodoListArr() {
     let todoList = this.todoListArr();
     todoList = Todo.toTodo(todoList);
     return todoList;
-  };
+  }
 
-  static getIndex(todoList, todo){
-      for(let i = 0; i < todoList.length; i+=1) {
-        if(JSON.stringify(todoList[i]) === JSON.stringify(todo)){
-       
-          return i;
-        }
-      };
+  static getIndex(todoList, todo) {
+    for (let i = 0; i < todoList.length; i += 1) {
+      if (JSON.stringify(todoList[i]) === JSON.stringify(todo)) {
+        return i;
+      }
+    }
+    return -1;
   }
 
   static updateTodo(todo, updatedTodo) {
-    const todoList  = this.todoListArr();
-    const index = this.getIndex(todoList, todo); 
+    const todoList = this.todoListArr();
+    const index = this.getIndex(todoList, todo);
     todoList[index] = updatedTodo;
     localStorage.setItem('todolistarr', JSON.stringify(todoList));
-  };
+  }
 
   static deleteTodo(todo) {
     const todoList = Todo.todoListArr();
     const index = this.getIndex(todoList, todo);
-    
+
     todoList.splice(index, 1);
     localStorage.setItem('todolistarr', JSON.stringify(todoList));
-  };
+  }
 
-  getTodoContainerClass(todoStatus) {
-    if (todoStatus === true) {
+  getTodoContainerName() {
+    if (this.checklist === true) {
       return '.done';
     }
     return '.undone';
   }
 
   displayNewTodo() {
-  
     PubSub.publish('todo-info', {
       todo: this,
-      status: this.getTodoContainerClass(this.checklist),
+      status: this.getTodoContainerName,
     });
   }
-};
+}
 
 
 export default Todo;
