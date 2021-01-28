@@ -1,7 +1,6 @@
 import '../css/reset.css';
 import '../css/style.css';
 
-import storage from './storage';
 import Todo from './todo';
 import Project from './project';
 import ProjectUI from './projectUI';
@@ -24,8 +23,8 @@ ADDNEWPROJECTBTN.addEventListener('click', () => {
     ADDNEWPROJECTBTN.textContent = 'Add Project';
   }
   if (ADDNEWPROJECTINPUT.value) {
-    const newProject = Project(ADDNEWPROJECTINPUT.value, storage.getTodoListArr);
-    storage.addProject(newProject);
+    const newProject = new Project(ADDNEWPROJECTINPUT.value);
+    newProject.saveProject();
     newProject.newProject();
   }
 });
@@ -40,21 +39,17 @@ ADDTODOBTNS.forEach(btn => {
     const priority = document.getElementById('priority').value;
     const project = document.querySelector('.project-title').textContent;
     const form = document.querySelector('.add-todo-form');
-    const newTodo = Todo(title, description, dueDate, priority, notes,
+    const newTodo = new Todo(title, description, dueDate, priority, notes,
       checkbox, project);
 
     newTodo.displayNewTodo();
-    storage.addTodo(newTodo);
+    newTodo.saveTodo();
     form.reset();
   });
 });
 
 
-const defaultPage = Project("All To-Do's", storage.getTodoListArr);
+const defaultPage = new Project("All To-Do's");
 defaultPage.newProject();
 
-storage.savedProjects();
-
-
-// setTimeout(defaultContainer.click(), 500);
-// PROJECTLIST.insertBefore(defaultContainer, PROJECTLIST.firstChild);
+Project.savedProjects();

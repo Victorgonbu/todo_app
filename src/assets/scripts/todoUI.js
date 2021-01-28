@@ -1,5 +1,5 @@
 import PubSub from 'pubsub-js';
-import storage from './storage';
+import Todo from './todo';
 
 const TodoUI = (() => {
   function addPriorityClass(todo, todoCard) {
@@ -18,7 +18,7 @@ const TodoUI = (() => {
       const card = removeButton.closest('.todo-card');
       removeCard(card, todoStatus);
 
-      storage.deleteTodo(todo);
+      Todo.deleteTodo(todo);
     });
   }
 
@@ -49,8 +49,10 @@ const TodoUI = (() => {
 
   function checkboxListener(checkbox, todo, todoStatus) {
     checkbox.addEventListener('click', () => {
-      todo.checklist = true;
-      storage.updateTodo(todo);
+      let updatedtodo = {... todo};
+      updatedtodo.checklist = true;
+      
+      Todo.updateTodo(todo);
       // updateTodo(todo); possible error
       const card = checkbox.closest('.todo-card');
       removeCard(card, todoStatus);
@@ -90,13 +92,13 @@ const TodoUI = (() => {
       const editedDescription = todoCard.querySelector('.description-card-edit').value;
       const editedDuedate = todoCard.querySelector('.dueDate-card-edit').value;
       const editedNotes = todoCard.querySelector('.notes-card-edit').value;
+      let updatedTodo = {... todo};
+      updatedTodo.title = editedTitle;
+      updatedTodo.description = editedDescription;
+      updatedTodo.dueDate = editedDuedate;
+      updatedTodo.notes = editedNotes;
 
-      todo.title = editedTitle;
-      todo.description = editedDescription;
-      todo.dueDate = editedDuedate;
-      todo.notes = editedNotes;
-
-      storage.updateTodo(todo);
+      Todo.updateTodo(todo);
       // updateTodo(todo); possible error
 
       todoCard.removeChild(todoCard.lastChild);
