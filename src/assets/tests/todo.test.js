@@ -1,3 +1,4 @@
+/* eslint no-underscore-dangle: 0 */
 import Todo from '../scripts/todo';
 
 describe('Todo', () => {
@@ -18,7 +19,7 @@ describe('Todo', () => {
   describe('saveTodo', () => {
     const todo = new Todo('title', 'description', '25-11-2021', 'medium', 'notes', false, 'any');
     todo.saveTodo();
-    expect(JSON.parse(localStorage.__STORE__['todolistarr'])).toHaveLength(1);
+    expect(JSON.parse(localStorage.__STORE__.todolistarr)).toHaveLength(1);
   });
 
   describe('getTodoListArr', () => {
@@ -34,7 +35,7 @@ describe('Todo', () => {
     it('update todo in localStorage with todo passed in parameters', () => {
       const todo = new Todo('update title', 'description', '25-11-2021', 'medium', 'notes', false, 'any');
       todo.saveTodo();
-      const updatedTodo = {... todo, checklist: true};
+      const updatedTodo = { ...todo, checklist: true };
       todo.updateTodo(updatedTodo);
       expect(Todo.todoListArr()).toContainEqual(updatedTodo);
     });
@@ -45,9 +46,8 @@ describe('Todo', () => {
       const todo = new Todo('update title', 'description', '25-11-2021', 'medium', 'notes', false, 'any');
       todo.saveTodo();
       expect(Todo.getTodoListArr()).toHaveLength(1);
-      todo.deleteTodo()
+      todo.deleteTodo();
       expect(Todo.getTodoListArr()).toHaveLength(0);
     });
-    
   });
 });

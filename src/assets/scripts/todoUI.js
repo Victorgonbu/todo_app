@@ -1,5 +1,4 @@
 import PubSub from 'pubsub-js';
-import Todo from './todo';
 
 const TodoUI = (() => {
   function addPriorityClass(todo, todoCard) {

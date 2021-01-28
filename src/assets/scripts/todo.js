@@ -1,7 +1,6 @@
 import PubSub from 'pubsub-js';
 
 class Todo {
- 
   constructor(title, description, dueDate, priority, notes, checklist, project) {
     this.title = title;
     this.description = description;
@@ -36,9 +35,9 @@ class Todo {
     return todoList;
   }
 
-  getIndex(todoList, todo) {
+  getIndex(todoList) {
     for (let i = 0; i < todoList.length; i += 1) {
-      if (JSON.stringify(todoList[i]) === JSON.stringify(todo)) {
+      if (JSON.stringify(todoList[i]) === JSON.stringify(this)) {
         return i;
       }
     }
@@ -47,14 +46,14 @@ class Todo {
 
   updateTodo(updatedTodo) {
     const todoList = Todo.todoListArr();
-    const index = this.getIndex(todoList, this);
+    const index = this.getIndex(todoList);
     todoList[index] = updatedTodo;
     localStorage.setItem('todolistarr', JSON.stringify(todoList));
   }
 
   deleteTodo() {
     const todoList = Todo.todoListArr();
-    const index = this.getIndex(todoList, this);
+    const index = this.getIndex(todoList);
 
     todoList.splice(index, 1);
     localStorage.setItem('todolistarr', JSON.stringify(todoList));
