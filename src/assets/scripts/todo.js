@@ -1,10 +1,7 @@
 import PubSub from 'pubsub-js';
 
 class Todo {
-  static todoListArr() {
-    return JSON.parse(localStorage.getItem('todolistarr')) || [];
-  }
-
+ 
   constructor(title, description, dueDate, priority, notes, checklist, project) {
     this.title = title;
     this.description = description;
@@ -29,13 +26,17 @@ class Todo {
     return todoList;
   }
 
+  static todoListArr() {
+    return JSON.parse(localStorage.getItem('todolistarr')) || [];
+  }
+
   static getTodoListArr() {
     let todoList = this.todoListArr();
     todoList = Todo.toTodo(todoList);
     return todoList;
   }
 
-  static getIndex(todoList, todo) {
+  getIndex(todoList, todo) {
     for (let i = 0; i < todoList.length; i += 1) {
       if (JSON.stringify(todoList[i]) === JSON.stringify(todo)) {
         return i;
@@ -44,16 +45,16 @@ class Todo {
     return -1;
   }
 
-  static updateTodo(todo, updatedTodo) {
-    const todoList = this.todoListArr();
-    const index = this.getIndex(todoList, todo);
+  updateTodo(updatedTodo) {
+    const todoList = Todo.todoListArr();
+    const index = this.getIndex(todoList, this);
     todoList[index] = updatedTodo;
     localStorage.setItem('todolistarr', JSON.stringify(todoList));
   }
 
-  static deleteTodo(todo) {
+  deleteTodo() {
     const todoList = Todo.todoListArr();
-    const index = this.getIndex(todoList, todo);
+    const index = this.getIndex(todoList, this);
 
     todoList.splice(index, 1);
     localStorage.setItem('todolistarr', JSON.stringify(todoList));

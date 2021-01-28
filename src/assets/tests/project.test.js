@@ -31,12 +31,12 @@ describe('Project', () => {
     });
   });
 
-  describe('savedProjects', () => {
-    it('get all saved projects from localStorage and display them', () => {
-        const project = new Project('name');
-        project.saveProject();
-        
-        expect(JSON.parse(localStorage.__STORE__['projectarr'])).toHaveLength(1);
+  describe('saveProject', () => {
+    it('save project in LocalStorage', () => {
+      const project = new Project();
+      project.saveProject();
+      expect(localStorage);
+      expect(JSON.parse(localStorage.__STORE__['projectarr'])).toHaveLength(1);
     });
   });
 });

@@ -18,7 +18,7 @@ const TodoUI = (() => {
       const card = removeButton.closest('.todo-card');
       removeCard(card, todoStatus);
 
-      Todo.deleteTodo(todo);
+      todo.deleteTodo();
     });
   }
 
@@ -52,7 +52,7 @@ const TodoUI = (() => {
       const oldTodo = { ...todo };
       todo.checklist = true;
 
-      Todo.updateTodo(oldTodo, todo);
+      todo.updateTodo(oldTodo);
       // updateTodo(todo); possible error
       const card = checkbox.closest('.todo-card');
       removeCard(card, todoStatus);
@@ -99,7 +99,7 @@ const TodoUI = (() => {
       todo.dueDate = editedDuedate;
       todo.notes = editedNotes;
 
-      Todo.updateTodo(oldTodo, todo);
+      todo.updateTodo(oldTodo);
       // updateTodo(todo); possible error
 
       todoCard.removeChild(todoCard.lastChild);
