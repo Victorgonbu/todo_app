@@ -25,7 +25,7 @@ describe('Project', () => {
   describe('projectArr', () => {
     it('return an array with Project objects from localStorage', () => {
       const project = new Project('name');
-      project.saveProject();  
+      project.saveProject();
       expect(Project.projectArr()).toHaveLength(1);
       expect(localStorage.getItem).toHaveBeenLastCalledWith('projectarr');
     });
@@ -33,8 +33,8 @@ describe('Project', () => {
 
   describe('toProject', () => {
     it('takes an array with objects and returns an array with Project objects', () => {
-      let object = {
-        name: 'name'
+      const object = {
+        name: 'name',
       };
       let array = [];
       array.push(object);

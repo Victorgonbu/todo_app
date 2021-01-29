@@ -25,15 +25,15 @@ describe('Todo', () => {
 
   describe('toTodo', () => {
     it('takes an array of objects and returns a Todo object array', () => {
-      let object = {
+      const object = {
         title: 'title',
         description: 'description',
         dueDate: 'dueDate',
         priority: 'priority',
         notes: 'notes',
         checklist: false,
-        project: 'project'
-      }
+        project: 'project',
+      };
       let objectArr = [];
       objectArr.push(object);
       objectArr = Todo.toTodo(objectArr);
@@ -44,26 +44,26 @@ describe('Todo', () => {
   describe('todoListArr', () => {
     it('returns todo list object array from localStorage', () => {
       const todo = new Todo('title', 'description', '25-11-2021', 'medium', 'notes', true, 'any');
-      todo.saveTodo()
+      todo.saveTodo();
       expect(Todo.todoListArr()).toHaveLength(1);
       expect(localStorage.getItem).toHaveBeenLastCalledWith('todolistarr');
     });
   });
 
   describe('getIndex', () => {
-      describe("get an object's index in the passed in array", () => {
-          const todo = new Todo('title', 'description', '25-11-2021', 'medium', 'notes', true, 'any');
-          let array = [];
-          array.push(todo);
-       
-        it('return positive index if exist in array', () => {
-          expect(todo.getIndex(array)).toBe(0);
-        });
-        it('return -1 if does not exits in array', () => {
-          array.pop()
-          expect(todo.getIndex(array)).toBe(-1);
-        });
+    describe("get an object's index in the passed in array", () => {
+      const todo = new Todo('title', 'description', '25-11-2021', 'medium', 'notes', true, 'any');
+      const array = [];
+      array.push(todo);
+
+      it('return positive index if exist in array', () => {
+        expect(todo.getIndex(array)).toBe(0);
       });
+      it('return -1 if does not exits in array', () => {
+        array.pop();
+        expect(todo.getIndex(array)).toBe(-1);
+      });
+    });
   });
 
   describe('getTodoListArr', () => {
