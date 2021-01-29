@@ -5,6 +5,7 @@ import Todo from '../scripts/todo';
 describe('Project', () => {
   beforeEach(() => {
     localStorage.clear();
+    localStorage.getItem.mockClear();
   });
   describe('allOrSpecific', () => {
     it('Return specific-project todos', () => {
@@ -18,6 +19,27 @@ describe('Project', () => {
       todo.saveTodo();
       todo2.saveTodo();
       expect(Project.allOrSpecific("All To-Do's")).toHaveLength(2);
+    });
+  });
+
+  describe('projectArr', () => {
+    it('return an array with Project objects from localStorage', () => {
+      const project = new Project('name');
+      project.saveProject();  
+      expect(Project.projectArr()).toHaveLength(1);
+      expect(localStorage.getItem).toHaveBeenLastCalledWith('projectarr');
+    });
+  });
+
+  describe('toProject', () => {
+    it('takes an array with objects and returns an array with Project objects', () => {
+      let object = {
+        name: 'name'
+      };
+      let array = [];
+      array.push(object);
+      array = Project.toProject(array);
+      expect(array[0] instanceof Project).toBe(true);
     });
   });
 

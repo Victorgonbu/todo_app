@@ -25,7 +25,7 @@ class Project {
     return projectArray;
   }
 
-  static getProjectArr() {
+  static getProjectArr() {  
     let projectArray = this.projectArr();
     projectArray = Project.toProject(projectArray);
 
