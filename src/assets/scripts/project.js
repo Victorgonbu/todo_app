@@ -1,79 +1,60 @@
-const Project = (name, storage) => {
-  const generateProjectTitle = (project) => {
-    const header = document.createElement('h2');
-    header.classList.add('project-title');
-    header.textContent = project.textContent;
-    return header;
-  };
+// import ProjectUI from './projectUI';
+import PubSub from 'pubsub-js';
+import Todo from './todo';
 
-  const generateProjectTodos = (project) => {
-    let todos;
+class Project {
+  constructor(name) {
+    this.name = name;
+  }
 
-    if (project.textContent === "All To-Do's") {
-      todos = storage();
-    } else {
-      todos = storage().filter(todo => todo.project === project.textContent);
+  static allOrSpecific(projectName) {
+    if (projectName === "All To-Do's") {
+      return Todo.getTodoListArr();
     }
+    return Todo.getTodoListArr().filter(todo => todo.project === projectName);
+  }
 
-    if (todos) {
-      todos.forEach(todo => {
-        todo.displayNewTodo();
+  static projectArr() {
+    return JSON.parse(localStorage.getItem('projectarr')) || [];
+  }
+
+  static toProject(projectArray) {
+    if (projectArray.length > 0) {
+      return projectArray.map(project => new Project(project.name));
+    }
+    return projectArray;
+  }
+
+  static getProjectArr() {
+    let projectArray = this.projectArr();
+    projectArray = Project.toProject(projectArray);
+
+    return projectArray;
+  }
+
+  static savedProjects() {
+    if (Project.getProjectArr().length > 0) {
+      Project.getProjectArr().forEach(project => {
+        project.newProject();
       });
     }
-  };
+  }
 
-  const clearProjectBoard = (todolist) => {
-    while (todolist.firstChild) {
-      todolist.removeChild(todolist.firstChild);
-    }
-  };
-
-  const generateContainer = (tag, tagClass, textContent = '') => {
-    const container = document.createElement(tag);
-    container.classList.add(tagClass);
-    container.textContent = textContent;
-    return container;
-  };
-
-  const projectClickListener = (project) => {
-    project.addEventListener('click', () => {
-      const board = document.querySelector('.display-board');
-      const subBoard = document.querySelector('.todo-lists');
-
-      clearProjectBoard(subBoard);
-
-      const doneTodoContainer = generateContainer('div', 'done');
-      doneTodoContainer.classList.add('todos-container');
-      const undoneTodoContainer = generateContainer('div', 'undone');
-      undoneTodoContainer.classList.add('todos-container');
-
-      const doneTitle = generateContainer('h3', 'done-title', 'Done');
-      doneTodoContainer.insertBefore(doneTitle, doneTodoContainer.firstChild);
-
-      const undoneTitle = generateContainer('h3', 'undone-title', 'To Do');
-      undoneTodoContainer.insertBefore(undoneTitle, undoneTodoContainer.firstChild);
-
-      subBoard.appendChild(doneTodoContainer);
-      subBoard.insertBefore(undoneTodoContainer, subBoard.firstChild);
-      board.classList.add('active-board');
+  saveProject() {
+    const projectArray = Project.getProjectArr();
+    projectArray.push(this);
+    localStorage.setItem('projectarr', JSON.stringify(projectArray));
+  }
 
 
-      const projectTitle = generateProjectTitle(project);
-      subBoard.insertBefore(projectTitle, subBoard.firstChild);
-      generateProjectTodos(project);
+  newProject() {
+    const projectInfo = 'Project-info';
+
+    PubSub.publish(projectInfo, {
+      name: this.name,
     });
-  };
+  }
+}
 
-  const displayNewProject = () => {
-    const project = document.createElement('li');
-    project.classList.add('project-item');
-    project.textContent = name;
-    projectClickListener(project);
-
-    return project;
-  };
-
-  return { name, displayNewProject };
-};
 
 export default Project;

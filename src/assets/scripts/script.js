@@ -1,15 +1,18 @@
 import '../css/reset.css';
 import '../css/style.css';
-import storage from './storage';
+
 import Todo from './todo';
 import Project from './project';
+import ProjectUI from './projectUI';
+import TodoUI from './todoUI';
 
+ProjectUI.setUp();
+TodoUI.setUp();
 
 const ADDNEWPROJECTBTN = document.querySelector('.new-project');
 const ADDNEWPROJECTINPUT = document.querySelector('.new-project-input');
-const PROJECTSCONTAINER = document.querySelector('.projects');
 const ADDTODOBTNS = document.querySelectorAll('.submit-todo');
-const PROJECTLIST = document.querySelector('.list');
+
 
 ADDNEWPROJECTBTN.addEventListener('click', () => {
   ADDNEWPROJECTBTN.classList.toggle('active-btn');
@@ -20,12 +23,9 @@ ADDNEWPROJECTBTN.addEventListener('click', () => {
     ADDNEWPROJECTBTN.textContent = 'Add Project';
   }
   if (ADDNEWPROJECTINPUT.value) {
-    const newProject = Project(ADDNEWPROJECTINPUT.value, storage.getTodoListArr);
-    const project = newProject.displayNewProject();
-    storage.addProject(newProject);
-    PROJECTLIST.appendChild(project);
-    const form = PROJECTSCONTAINER.querySelector('form');
-    form.reset();
+    const newProject = new Project(ADDNEWPROJECTINPUT.value);
+    newProject.saveProject();
+    newProject.newProject();
   }
 });
 
@@ -39,18 +39,17 @@ ADDTODOBTNS.forEach(btn => {
     const priority = document.getElementById('priority').value;
     const project = document.querySelector('.project-title').textContent;
     const form = document.querySelector('.add-todo-form');
-    const newTodo = Todo(title, description, dueDate, priority, notes,
-      checkbox, project, storage.updateTodo, storage.deleteTodo);
+    const newTodo = new Todo(title, description, dueDate, priority, notes,
+      checkbox, project);
 
     newTodo.displayNewTodo();
-    storage.addTodo(newTodo);
+    newTodo.saveTodo();
     form.reset();
   });
 });
 
-storage.savedProjects();
 
-const defaultPage = Project("All To-Do's", storage.getTodoListArr);
-const defaultContainer = defaultPage.displayNewProject();
-setTimeout(defaultContainer.click(), 500);
-PROJECTLIST.insertBefore(defaultContainer, PROJECTLIST.firstChild);
+const defaultPage = new Project("All To-Do's");
+defaultPage.newProject();
+
+Project.savedProjects();

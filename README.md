@@ -38,6 +38,16 @@ To get a local copy up and running follow these simple example steps.
 
 - LocalStorage is used to save all the data.
 
+### Unit Tests
+
+To see all app unit tests just run the 'test' script from the package.json by runnig the following commandline in your terminal(make sure you are inside the project folder):
+
+```
+$npm test
+```
+
+that's it. All unit test will be shown in your terminal whether they fail or not.
+
 ## Author
 
 👤 Victor Gonzalez
